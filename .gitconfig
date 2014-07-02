@@ -1,0 +1,50 @@
+[user]
+    name = Juraj Petrik
+    email = juraj.petrik@taqtile.com
+[credential]
+    helper = osxkeychain
+[color]
+    branch = auto
+    diff = auto
+    grep = auto
+    interactive = auto
+    status = auto
+[alias]
+    a = add
+    s = status
+    st = status
+    c = commit
+    cm = commit -m
+    ca = commit -a 
+    call = commit -a
+    cam = commit -a -m
+    callme = commit -a -m
+    br = branch
+    df = diff --word-diff
+    d = diff
+    lg = log --oneline --decorate
+    co = checkout
+    cb = checkout -b
+    cob = checkout -b
+    pom = push origin master
+    ps = push
+    poh = push origin HEAD
+    pl = pull
+    mg = merge --no-ff
+    ft = fetch
+    f = fetch
+    ls-rm = ls-remote --heads
+
+  po = push origin
+  poi = push origin ios-develop
+  pos = push origin server-develop
+  poa = push origin android-develop
+  ploi = pull origin ios-develop
+  plos = pull origin server-develop
+  ploa = pull origin android-develop
+
+  coa = checkout android-develop
+  coi = checkout ios-develop
+  cod = checkout develop
+[core]
+	mergeoptions = --no-edit
