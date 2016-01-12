@@ -21,3 +21,7 @@ set noexpandtab
 
 " display line numbers
 set number
+
+" ctrl+J to split a line
+:nnoremap <NL> i<CR><ESC>
+
