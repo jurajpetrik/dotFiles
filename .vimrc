@@ -25,7 +25,7 @@ set number
 syntax on
 
 "pick a color scheme
-colorscheme desert
+colorscheme murphy
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "
