@@ -8,6 +8,9 @@
 
 #aliases
 
+#make sudo expand aliases http://unix.stackexchange.com/a/148548
+alias sudo='sudo '
+
 # Colorize ls outputs
 alias ls='ls --color=auto'
 
