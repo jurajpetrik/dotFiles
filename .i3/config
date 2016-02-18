@@ -10,10 +10,10 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
 #
+
 #setting constants for this config file
 set $mod Mod4
 set $term i3-sensible-terminal
-set $resize python ~/.i3/i3resize.py 
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -124,10 +124,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h exec $resize h
-        bindsym j exec $resize j
-        bindsym k exec $resize k
-        bindsym l exec $resize l
+				bindsym h  resize shrink width 10 px or 10 ppt
+				bindsym j  resize grow height 10 px or 10 ppt
+				bindsym k  resize shrink height 10 px or 10 ppt
+				bindsym l  resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         #bindsym Left resize shrink width 10 px or 10 ppt
