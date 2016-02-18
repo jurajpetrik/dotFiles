@@ -21,6 +21,12 @@ set noexpandtab
 " display line numbers
 set number
 
+"turn on syntax highlighting
+syntax on
+
+"pick a color scheme
+colorscheme desert
+
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "
 " ctrl+J to split a line
