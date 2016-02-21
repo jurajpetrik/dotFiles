@@ -86,7 +86,7 @@ bindsym $mod+a focus parent
 
 # set workspace name vars
 set $workspace1 "1 Terminal"
-set $workspace2 "2 Chrome"
+set $workspace2 "2 Chrome &#xf268;"
 set $workspace3 "3 Chat"
 set $workspace10 "10 Monitoring"
 # switch to workspace
