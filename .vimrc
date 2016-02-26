@@ -6,6 +6,9 @@ set ignorecase
 " Highlight search results
 set hlsearch
 
+" Show the first match for the search pattern while you're still typing it
+set incsearch
+
 "indent sutff
 filetype plugin indent on
 
