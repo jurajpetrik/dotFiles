@@ -16,6 +16,7 @@ alias ls='ls --color=auto'
 
 alias g=git
 alias v=vim
+alias vi=vim
 alias p=pacman
 
 # Styling the console prompt
