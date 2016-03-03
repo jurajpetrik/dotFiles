@@ -164,3 +164,4 @@ assign [class="google-chrome"] $workspace2
 #Applications to start at startup
 exec $term
 exec chrome
+exec_always compton -f
