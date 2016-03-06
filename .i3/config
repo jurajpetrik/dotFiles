@@ -162,6 +162,7 @@ bar {
 assign [class="google-chrome"] $workspace2
 
 #Applications to start at startup
-exec $term
-exec chrome
 exec_always compton -D 0
+exec chrome
+#pick a random wallpaper
+exec_always --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
