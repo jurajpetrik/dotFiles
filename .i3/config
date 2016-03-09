@@ -78,7 +78,7 @@ bindsym $mod+a focus parent
 
 # set workspace name vars
 set $workspace1 "1 Terminal"
-set $workspace2 "2 Chrome &#xf268;"
+set $workspace2 "2 &#xf268;"
 set $workspace3 "3 Chat"
 set $workspace10 "10 Monitoring"
 
@@ -163,6 +163,5 @@ assign [class="google-chrome"] $workspace2
 
 #Applications to start at startup
 exec_always compton -D 0
-exec chrome
 #pick a random wallpaper
 exec_always --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
