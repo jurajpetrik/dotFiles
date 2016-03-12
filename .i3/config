@@ -166,6 +166,7 @@ bar {
 
 #assign chrome windows in workspace 2
 assign [class="google-chrome"] $workspace2
+assign [class="luakit"] $workspace2
 
 #Applications to start at startup
 exec_always compton -D 0
