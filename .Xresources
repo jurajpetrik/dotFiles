@@ -36,12 +36,9 @@ URxvt*scrollTtyKeypress: true
 
 ! Fonts
 !URxvt.allow_bold:           false
-URxvt*font:                  xft:Droid Sans Mono for Powerline:hinting=true:pixelsize=12:antialias=False,\
-                             xft:Symbola hinting=true:pixelsize=12:
-URxvt*boldFont:              xft:Droid Sans Mono for Powerline:style=bold:hinting=true:pixelsize=12:antialias=False,\
-                             xft:Symbola hinting=true:pixelsize=12:
-URxvt*italicFont:            xft:Droid Sans Mono for Powerline:style=italic:hinting=true:pixelsize=12:antialias=False,\
-                             xft:Symbola hinting=true:pixelsize=12:
+URxvt.font:     						 xft:bitstream vera sans mono:size=9:antialias=true
+URxvt.boldFont: 						 xft:bitstream vera sans mono:bold:size=9:antialias=true
+URxvt*italicFont:            xft:Droid Sans Mono for Powerline:style=italic:hinting=true:pixelsize=12:antialias=False,\ xft:Symbola hinting=true:pixelsize=12:
 URxvt*boldItalicFont:        xft:Droid Sans Mono for Powerline:style=bolditalic:hinting=true:pixelsize=12:antialias=False,\
                              xft:Symbola hinting=true:pixelsize=12
                                                 
@@ -104,4 +101,4 @@ URxvt.cursorColor: #919191
 !:URxvt.borderColor: #101010
 
 ! colours
-#include "~/.colors/sourcerer"
+#include "/home/juraj/.colors/Molokai"
