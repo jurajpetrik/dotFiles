@@ -25,7 +25,7 @@
     ours = checkout --ours
     theirs = checkout --theirs
 [user]
-	email = jup@debitoor.com
+	email = jpe@coinify.com
 	name = Juraj Petrik
 [core]
 	preloadindex = true
@@ -37,3 +37,5 @@
 	default = simple
 [colors]
 	ui = true
+[init]
+	templatedir = ~/.git_template
