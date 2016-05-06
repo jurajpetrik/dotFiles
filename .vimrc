@@ -38,3 +38,8 @@ colorscheme murphy
 " ZA to exit if no unsaved changes.
 :map ZA :q<CR>
 
+
+" -------------------------- PLUGINS  -------------------------------
+
+call plug#begin('~/.vim/plugged')
+call plug#end()
