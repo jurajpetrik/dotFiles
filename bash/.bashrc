@@ -12,7 +12,7 @@
 alias sudo='sudo '
 
 # Colorize ls outputs
-alias ls='ls --color=auto'
+alias ls='ls -GpFh'
 
 alias g=git
 alias v=vim
