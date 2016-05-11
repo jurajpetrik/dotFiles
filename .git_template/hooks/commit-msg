@@ -1,12 +1,19 @@
 #!/bin/sh
 parse_git_tracker_and_ticket() {
-  git symbolic-ref --short HEAD | grep -e '[A-Z]\+-[0-9]\+' -o
+   echo $1 | grep -e '[A-Z]\+-[0-9]\+' -o
 }
 
 MESSAGE="$(cat $1)"
-TICKET=$(parse_git_tracker_and_ticket)
-
-if [ -n "$TICKET" ]
+TICKET_IN_MESSAGE=$(parse_git_tracker_and_ticket $MESSAGE)
+if [ -n "$TICKET_IN_MESSAGE" ]
 then
-   echo "$TICKET $MESSAGE" > $1
+	echo "$MESSAGE" > $1
+	exit 0
+fi
+
+GIT_BRANCH=$(git symbolic-ref --short HEAD)
+TICKET_IN_BRANCH=$(parse_git_tracker_and_ticket $GIT_BRANCH)
+if [ -n "$TICKET_IN_BRANCH" ]
+then
+   echo "$TICKET_IN_BRANCH $MESSAGE" > $1
 fi
