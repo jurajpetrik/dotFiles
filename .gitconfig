@@ -35,7 +35,7 @@
 [gc]
 	auto = 0
 [push]
-	default = simple
+	default = current
 [colors]
 	ui = true
 [init]
