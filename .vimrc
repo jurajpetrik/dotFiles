@@ -27,8 +27,6 @@ set number
 "turn on syntax highlighting
 syntax on
 
-"pick a color scheme
-colorscheme murphy
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "
@@ -43,4 +41,9 @@ colorscheme murphy
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround'
+Plug 'scwood/vim-hybrid'
 call plug#end()
+
+" ------------------------ COLOR SCHEME ---------------------------
+colorscheme hybrid
+set background=dark
