@@ -27,8 +27,9 @@ set number
 "turn on syntax highlighting
 syntax on
 
-"pick a color scheme
-colorscheme murphy
+"double slash to search for visually selected text
+vnoremap // y/<C-R>"<CR>
+
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "
@@ -38,3 +39,14 @@ colorscheme murphy
 " ZA to exit if no unsaved changes.
 :map ZA :q<CR>
 
+
+" -------------------------- PLUGINS  -------------------------------
+
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-surround'
+Plug 'scwood/vim-hybrid'
+call plug#end()
+
+" ------------------------ COLOR SCHEME ---------------------------
+colorscheme hybrid
+set background=dark
