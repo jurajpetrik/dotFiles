@@ -33,6 +33,9 @@ syntax on
 "double slash to search for visually selected text
 vnoremap // y/<C-R>"<CR>
 
+"open new split panes to the right and bottom
+set splitbelow
+set splitright
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "
