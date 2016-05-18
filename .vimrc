@@ -1,5 +1,3 @@
-vnoremap // y/<C-R>"<CR>
-
 " Ignore case when searching
 set ignorecase
 
@@ -8,9 +6,6 @@ set hlsearch
 
 " Show the first match for the search pattern while you're still typing it
 set incsearch
-
-"indent sutff
-filetype plugin indent on
 
 " show existing tab with 2 spaces width
 set tabstop=2
@@ -52,6 +47,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'scwood/vim-hybrid'
 call plug#end()
+
+" Try to recognize filetype, turn on specific plugins and indentation 
+filetype plugin indent on
 
 " ------------------------ COLOR SCHEME ---------------------------
 colorscheme hybrid
