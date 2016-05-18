@@ -24,6 +24,9 @@ set noexpandtab
 " display line numbers
 set number
 
+" display relative line numbers
+set relativenumber
+
 "turn on syntax highlighting
 syntax on
 
