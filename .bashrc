@@ -25,3 +25,8 @@ PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1
 
 # gdiff is diff styled like git diff
 function gdiff () { diff -u $@ | colordiff | less -R; }
+
+# write history to ~/.bash_history after every command. Ensures history is saved across multiple terminals
+# http://northernmost.org/blog/flush-bash_history-after-each-command/
+export PROMPT_COMMAND='history -a'
+
