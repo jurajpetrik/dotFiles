@@ -30,3 +30,5 @@ function gdiff () { diff -u $@ | colordiff | less -R; }
 # http://northernmost.org/blog/flush-bash_history-after-each-command/
 export PROMPT_COMMAND='history -a'
 
+# weather from the terminal yo
+function weather () { curl http://wttr.in/$@; }
