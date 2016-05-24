@@ -29,6 +29,9 @@ function gdiff () { diff -u $@ | colordiff | less -R; }
 # weather from the terminal yo
 function weather () { curl http://wttr.in/$@; }
 
+# make a directory and cd to it with one command
+function mkcd () { mkdir $1; cd $1; }
+
 # write history to ~/.bash_history after every command. Ensures history is saved across multiple terminals
 # http://northernmost.org/blog/flush-bash_history-after-each-command/
 export PROMPT_COMMAND='history -a'
