@@ -153,7 +153,7 @@ hide_edge_borders both
 bar {
 	font pango: System San Francisco Display, FontAwesome 9
 	status_command i3status
-	tray_output primary
+	#tray_output primary
 	colors {
 		background $bg-color
 		separator #757575
@@ -170,5 +170,6 @@ assign [class="luakit"] $workspace2
 
 #Applications to start at startup
 exec_always compton -D 0
+exec --no-startup-id nm-applet
 #pick a random wallpaper
 exec_always --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
