@@ -13,8 +13,8 @@ set tabstop=2
 " when indenting with '>', use 2 spaces width
 set shiftwidth=2
 
-" use tabs not spaces for indenting
-set noexpandtab
+" use spaces, not tabs for indentation :'-(
+set expandtab
 
 " display line numbers
 set number
@@ -32,6 +32,11 @@ vnoremap // y/<C-R>"<CR>
 set splitbelow
 set splitright
 
+"Maintain undo history between sessions (file closed, opened again)
+set undofile
+
+"Save undo history in this specific folder so as not to pollute
+set undodir=~/.vim/undodir
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "
 " ctrl+J to split a line
