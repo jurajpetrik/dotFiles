@@ -49,13 +49,25 @@ set undodir=~/.vim/undodir
 " -------------------------- PLUGINS  -------------------------------
 
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'scwood/vim-hybrid'
+Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
+Plug 'scwood/vim-hybrid' " colorscheme
+Plug 'scrooloose/syntastic' " linting
 call plug#end()
+
+" Settings for Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Try to recognize filetype, turn on specific plugins and indentation 
 filetype plugin indent on
 
+" Syntastic plugin (
 " ------------------------ COLOR SCHEME ---------------------------
 colorscheme hybrid
 set background=dark
