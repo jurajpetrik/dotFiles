@@ -1,42 +1,36 @@
 [color]
-	branch = auto
-	diff = auto
-	grep = auto
-	interactive = auto
-	status = auto
-	ui = true
+  branch = auto
+  diff = auto
+  grep = auto
+  interactive = auto
+  status = auto
+  ui = true
 [alias]
-	a = add
-	s = status
-	st = status
-	c = commit
-	cm = commit -m
-	d = diff
-	lg = log --oneline --decorate
-	co = checkout
-	cb = checkout -b
-	cob = checkout -b
-	pom = push origin master
-	poh = push origin HEAD
-	pl = pull
-	mg = merge --no-ff
-	ft = fetch
-	f = fetch
-	ours = checkout --ours
-	theirs = checkout --theirs
-	unstage = reset HEAD
+  a = add
+  s = status
+  c = commit
+  cm = commit -m
+  d = diff
+  dc = diff --cached
+  co = checkout
+  cb = checkout -b
+  cob = checkout -b
+  ours = checkout --ours
+  theirs = checkout --theirs
+  unstage = reset HEAD
+  amend = commit --amend --no-edit
 [user]
-	email = jpe@coinify.com
-	name = Juraj Petrik
+  email = jpe@coinify.com
+  name = Juraj Petrik
 [core]
-	preloadindex = true
-	fscache = true
-	whitespace = cr-at-eol
+  preloadindex = true
+  fscache = true
+  whitespace = cr-at-eol
 [gc]
-	auto = 0
+  auto = 0
 [push]
-	default = current
+  default = current
 [colors]
-	ui = true
+  ui = true
 [init]
-	templatedir = ~/.git_template
+  templatedir = ~/.git_template
