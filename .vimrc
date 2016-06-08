@@ -35,8 +35,17 @@ set splitright
 "Maintain undo history between sessions (file closed, opened again)
 set undofile
 
+"Create these folders if they don't exist, otherwise vim won't use them. And
+" don't complain if they already exist.
+silent !mkdir ~/.vim/undodir ~/.vim/backupdir ~/.vim/directory > /dev/null 2>&1
+
 "Save undo history in this specific folder so as not to pollute
 set undodir=~/.vim/undodir
+
+"Set directories for backup and .swp files so vim doesn't pollute project scope
+set backupdir=~/.vim/backupdir
+set directory=~/.vim/directory
+
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "
 " ctrl+J to split a line
@@ -63,7 +72,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint'] "Use eslint for javascript
 
 " Try to recognize filetype, turn on specific plugins and indentation 
 filetype plugin indent on
