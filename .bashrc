@@ -20,7 +20,8 @@ alias vi=vim
 alias p=pacman
 alias gvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 alias up="cd .."
-
+# If you pipe colored output to less, keep the colors
+alias less="less -r"
 #functions
 
 # gdiff is diff styled like git diff
