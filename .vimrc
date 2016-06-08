@@ -61,6 +61,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
 Plug 'scwood/vim-hybrid' " colorscheme
 Plug 'scrooloose/syntastic' " linting
+Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 call plug#end()
 
 " Settings for Syntastic
