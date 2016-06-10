@@ -48,12 +48,7 @@ set directory=~/.vim/directory
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "
-" ctrl+J to split a line
-:nnoremap <NL> i<CR><ESC>
-
-" ZA to exit if no unsaved changes.
-:map ZA :q<CR>
-
+let mapleader = "\<Space>"
 
 " -------------------------- PLUGINS  -------------------------------
 
