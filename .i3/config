@@ -37,7 +37,7 @@ gaps inner 15
 bindsym $mod+d exec rofi -show run -lines 3 -eh 3 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$rofi-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "$rofi-color" -font "System San Francisco Display 15" 
 
 # select random wallpaper
-bindsym $mod+w exec feh --randomize --bg-fill ~/.wallpaper/*
+bindsym $mod+w exec --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
 
 # change focus
 bindsym $mod+h focus left
@@ -164,8 +164,12 @@ bar {
 	}
 }
 
-#assign chrome windows in workspace 2
+# focus on opened windows, even if in another workspace
+focus_on_window_activation focus
+
 assign [class="google-chrome"] $workspace1
+assign [class="Termite"] $workspace2
+assign [class="Thunar"] $workspace4
 assign [class="mplayer"] $workspace4
 assign [class="Transmission-gtk"] $workspace4
 #Applications to start at startup
