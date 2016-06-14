@@ -37,6 +37,9 @@ function mkcd () { mkdir $1; cd $1; }
 # http://northernmost.org/blog/flush-bash_history-after-each-command/
 export PROMPT_COMMAND='history -a'
 
+#this is necessary for i3-nagbar. It executes its commands in i3-sensible-terminal. i3-sensible-terminal runs either the command set in $TERMINAL or falls back to some default terminals. 
+export TERMINAL='termite'
+
 # Styling the console prompt
 PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 
