@@ -24,6 +24,7 @@ set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 set $rofi-color 				 #9575cd
+
 # window colors
 #                       border              background         text                 indicator
 client.focused          $bg-color           $bg-color          $text-color          #00ff00
@@ -31,6 +32,8 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
+gaps inner 10
+gaps outer 10
 # start rufi (a program launcher)
 bindsym $mod+d exec rofi -show run -lines 3 -eh 3 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$rofi-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "$rofi-color" -font "System San Francisco Display 15" 
 
