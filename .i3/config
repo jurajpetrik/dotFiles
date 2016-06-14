@@ -80,8 +80,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # set workspace name vars
-set $workspace1   1: home
-set $workspace2   2: surf
+set $workspace1   1: surf
+set $workspace2   2: term
 set $workspace3   3: code
 set $workspace4   4: media
 set $workspace5   5: vbox
