@@ -60,6 +60,7 @@ Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes,
 Plug 'scwood/vim-hybrid' " colorscheme
 Plug 'scrooloose/syntastic' " linting
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
+Plug 'heavenshell/vim-jsdoc' " jsdoc generator
 call plug#end()
 
 " Settings for Syntastic
