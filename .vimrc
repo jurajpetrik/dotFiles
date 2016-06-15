@@ -25,9 +25,6 @@ set relativenumber
 " turn on syntax highlighting
 syntax on
 
-" double slash to search for visually selected text
-vnoremap // y/<C-R>" <CR>
-
 " open new split panes to the right and bottom
 set splitbelow
 set splitright
@@ -47,9 +44,15 @@ set backupdir=~/.vim/backupdir
 set directory=~/.vim/directory
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
-"
+
+" set Leader key to spacebar
 let mapleader = "\<Space>"
 
+" double slash to search for visually selected text
+vnoremap // y/<C-R>" <CR>
+
+" leader + esc to clear search highlighting
+nnoremap <Leader><Esc> :noh<CR>
 " -------------------------- PLUGINS  -------------------------------
 
 call plug#begin('~/.vim/plugged')
