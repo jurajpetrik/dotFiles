@@ -24,6 +24,7 @@ set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 set $rofi-color 				 #9575cd
+
 # window colors
 #                       border              background         text                 indicator
 client.focused          $bg-color           $bg-color          $text-color          #00ff00
@@ -31,13 +32,12 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
+gaps inner 15
 # start rufi (a program launcher)
 bindsym $mod+d exec rofi -show run -lines 3 -eh 3 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$rofi-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "$rofi-color" -font "System San Francisco Display 15" 
 
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# select random wallpaper
+bindsym $mod+w exec --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
 
 # change focus
 bindsym $mod+h focus left
@@ -61,7 +61,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -77,8 +77,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # set workspace name vars
-set $workspace1   1: home
-set $workspace2   2: surf
+set $workspace1   1: surf
+set $workspace2   2: term
 set $workspace3   3: code
 set $workspace4   4: media
 set $workspace5   5: vbox
@@ -164,12 +164,16 @@ bar {
 	}
 }
 
-#assign chrome windows in workspace 2
-assign [class="google-chrome"] $workspace2
-assign [class="luakit"] $workspace2
+# focus on opened windows, even if in another workspace
+focus_on_window_activation focus
 
+assign [class="google-chrome"] $workspace1
+assign [class="Termite"] $workspace2
+assign [class="Thunar"] $workspace4
+assign [class="mplayer"] $workspace4
+assign [class="Transmission-gtk"] $workspace4
 #Applications to start at startup
-exec_always compton -D 0
+exec_always --no-startup-id compton -D 0
 exec --no-startup-id nm-applet
 #pick a random wallpaper
 exec_always --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
