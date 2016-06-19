@@ -7,10 +7,13 @@ set hlsearch
 " Show the first match for the search pattern while you're still typing it
 set incsearch
 
+" delete spaces 2 at a time in insert mode.
+set softtabstop=2
+
 " show existing tab with 2 spaces width
 set tabstop=2
 
-" when indenting with '>', use 2 spaces width
+" indent in normal mode inserts 2 spaces
 set shiftwidth=2
 
 " use spaces, not tabs for indentation :'-(
