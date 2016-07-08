@@ -53,6 +53,13 @@ vnoremap // y/<C-R>" <CR>
 
 " leader + esc to clear search highlighting
 nnoremap <Leader><Esc> :noh<CR>
+
+nnoremap <Leader>f :CtrlP<CR>
+
+" go to previous, next location bindings. (useful for syntastic plugin, jump
+" to the next/prev error)
+nnoremap <Leader>n :lnext<CR>
+nnoremap <Leader>N :lprev<CR>
 " -------------------------- PLUGINS  -------------------------------
 
 call plug#begin('~/.vim/plugged')
@@ -61,6 +68,8 @@ Plug 'scwood/vim-hybrid' " colorscheme
 Plug 'scrooloose/syntastic' " linting
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'heavenshell/vim-jsdoc' " jsdoc generator
+Plug 'kien/ctrlp.vim' " fuzzy file search
+Plug 'pangloss/vim-javascript' " better js syntax highlighting
 call plug#end()
 
 " Settings for Syntastic
@@ -71,7 +80,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
 
 " Try to recognize filetype, turn on specific plugins and indentation 
