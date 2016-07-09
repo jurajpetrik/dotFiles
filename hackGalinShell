@@ -1,5 +1,0 @@
-#!/bin/bash
-brew install cowsay && echo "function git () { command git $@ | cowsay -f stegosaurus; }" >> ~/.bashrc;
-source ~/.bashrc
-
-
