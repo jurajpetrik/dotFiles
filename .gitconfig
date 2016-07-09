@@ -15,8 +15,6 @@
   co = checkout
   cb = checkout -b
   cob = checkout -b
-  ours = checkout --ours
-  theirs = checkout --theirs
   unstage = reset HEAD
   amend = commit --amend --no-edit
 [user]
