@@ -32,7 +32,8 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
-gaps inner 15
+gaps inner 45
+gaps inner 25
 # start rufi (a program launcher)
 bindsym $mod+d exec rofi -show run -lines 3 -eh 3 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$rofi-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "$rofi-color" -font "System San Francisco Display 15" 
 
@@ -79,7 +80,7 @@ bindsym $mod+a focus parent
 # set workspace name vars
 set $workspace1   1: surf
 set $workspace2   2: term
-set $workspace3   3: code
+set $workspace3   3: play
 set $workspace4   4: media
 set $workspace5   5: vbox
 set $workspace6   6: term
@@ -170,7 +171,7 @@ focus_on_window_activation focus
 assign [class="google-chrome"] $workspace1
 assign [class="Termite"] $workspace2
 assign [class="Thunar"] $workspace4
-assign [class="mplayer"] $workspace4
+assign [class="MPlayer"] $workspace3
 assign [class="Transmission-gtk"] $workspace4
 #Applications to start at startup
 exec_always --no-startup-id compton -D 0
