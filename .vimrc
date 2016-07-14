@@ -57,6 +57,7 @@ vnoremap // y/<C-R>" <CR>
 " leader + esc to clear search highlighting
 nnoremap <Leader><Esc> :noh<CR>
 
+" leader + f  == fuzzy file search ( using ctrl+p plugin)
 nnoremap <Leader>f :CtrlP<CR>
 
 " go to previous, next location bindings. (useful for syntastic plugin, jump
