@@ -60,10 +60,14 @@ nnoremap <Leader><Esc> :noh<CR>
 " leader + f  == fuzzy file search ( using ctrl+p plugin)
 nnoremap <Leader>f :CtrlP<CR>
 
+" make Y yank to the end of line, consistent with C,D (change, delete)
+nnoremap Y y$
+
 " go to previous, next location bindings. (useful for syntastic plugin, jump
 " to the next/prev error)
 nnoremap <Leader>n :lnext<CR>
 nnoremap <Leader>N :lprev<CR>
+
 " -------------------------- PLUGINS  -------------------------------
 
 call plug#begin('~/.vim/plugged')
