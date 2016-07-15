@@ -84,6 +84,7 @@ Plug 'tpope/vim-commentary' " add motion for commenting
 Plug 'heavenshell/vim-jsdoc' " jsdoc generator
 Plug 'kien/ctrlp.vim' " fuzzy file search
 Plug 'pangloss/vim-javascript' " better js syntax highlighting
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " Settings for Syntastic
@@ -97,6 +98,23 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
 
+" Settings for airline
+if !exists('g:airlinesymbols')
+  let g:airlinesymbols = {}
+endif
+let g:airlineleftsep = '»'
+let g:airlineleftsep = '?'
+let g:airlinerightsep = '«'
+let g:airlinerightsep = '?'
+let g:airlinesymbols.linenr = '?'
+let g:airlinesymbols.linenr = '?'
+let g:airlinesymbols.linenr = '¶'
+let g:airlinesymbols.branch = '? '
+let g:airlinesymbols.paste = '?'
+let g:airlinesymbols.paste = 'Þ'
+let g:airlinesymbols.paste = '?'
+let g:airlinesymbols.whitespace = '?'
+" Settings for airline
 " Try to recognize filetype, turn on specific plugins and indentation 
 filetype plugin indent on
 
