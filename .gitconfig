@@ -24,7 +24,7 @@
   preloadindex = true
   fscache = true
   whitespace = cr-at-eol
-	excludesfile = /home/juraj/.global_ignore
+	excludesfile = ~/.global_ignore
 [gc]
   auto = 0
 [push]
