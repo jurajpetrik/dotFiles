@@ -6,6 +6,9 @@ endif
 " toggle invisible characters
 set list
 
+" set terminal title to the name of the file
+set title
+
 " use system clipboard by default
 set clipboard=unnamedplus
 
@@ -14,6 +17,9 @@ set ignorecase
 
 " Highlight search results
 set hlsearch
+
+" don't redraw when executing macros
+set nolazyredraw 
 
 " delete spaces 2 at a time in insert mode.
 set softtabstop=2
@@ -133,6 +139,7 @@ let g:airlinesymbols.whitespace = '?'
 " ------------------------ COLOR SCHEME ---------------------------
 colorscheme hybrid
 set background=dark
+" ------------------------ COLOR SCHEME ---------------------------
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
