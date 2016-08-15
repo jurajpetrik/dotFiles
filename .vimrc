@@ -2,7 +2,13 @@
 if has('mouse')
   set mouse=a
 endif
-    
+
+" toggle invisible characters
+set list
+
+" use system clipboard by default
+set clipboard=unnamedplus
+
 " Ignore case when searching
 set ignorecase
 
