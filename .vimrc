@@ -70,6 +70,9 @@ nnoremap Y y$
 nnoremap <Leader>n :lnext<CR>
 nnoremap <Leader>N :lprev<CR>
 
+" Ctrl+p to search for files
+map <C-p> [unite]p
+
 " -------------------------- PLUGINS  -------------------------------
 
 call plug#begin('~/.vim/plugged')
@@ -83,13 +86,13 @@ Plug 'pangloss/vim-javascript' " better js syntax highlighting
 Plug 'vim-airline/vim-airline'
 Plug 'craigemery/vim-autotag' " generate ctags on file save
 
-Plug 'rstacruz/vim-fastunite' " packaged distribution of unite.vim
-Plug 'Shougo/vimproc.vim', { 'do': 'make' } 
-Plug 'Shougo/unite.vim' 
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/unite.vim'
+Plug 'rstacruz/vim-fastunite'
+
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'tsukkee/unite-tag'
-
 call plug#end()
 
 " Settings for Syntastic
