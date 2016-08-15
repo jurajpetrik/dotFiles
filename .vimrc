@@ -2,15 +2,12 @@
 if has('mouse')
   set mouse=a
 endif
-
+    
 " Ignore case when searching
 set ignorecase
 
 " Highlight search results
 set hlsearch
-
-" Show the first match for the search pattern while you're still typing it
-set incsearch
 
 " delete spaces 2 at a time in insert mode.
 set softtabstop=2
@@ -59,9 +56,6 @@ let mapleader = "\<Space>"
 " double slash to search for visually selected text
 vnoremap // y/<C-R>" <CR>
 
-" leader + esc to clear search highlighting
-nnoremap <Leader><Esc> :noh<CR>
-
 " make Y yank to the end of line, consistent with C,D (change, delete)
 nnoremap Y y$
 
@@ -82,8 +76,8 @@ Plug 'scrooloose/syntastic' " linting
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'tpope/vim-commentary' " add motion for commenting
 Plug 'heavenshell/vim-jsdoc' " jsdoc generator
-Plug 'pangloss/vim-javascript' " better js syntax highlighting
-Plug 'vim-airline/vim-airline'
+Plug 'pangloss/vim-javascript', { 'for': 'javasript' } " better js syntax highlighting
+Plug 'vim-airline/vim-airline' " status bar
 Plug 'craigemery/vim-autotag' " generate ctags on file save
 
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -93,6 +87,7 @@ Plug 'rstacruz/vim-fastunite'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'tsukkee/unite-tag'
+Plug 'tpope/vim-sensible'
 call plug#end()
 
 " Settings for Syntastic
@@ -124,13 +119,10 @@ let g:airlinesymbols.paste = 'Þ'
 let g:airlinesymbols.paste = '?'
 let g:airlinesymbols.whitespace = '?'
 
-set laststatus=2 "show airline on vimstart
 " Settings for airline
 
 " -------------------------- PLUGINS  -------------------------------
 
-" Try to recognize filetype, turn on specific plugins and indentation 
-filetype plugin indent on
 
 " ------------------------ COLOR SCHEME ---------------------------
 colorscheme hybrid
