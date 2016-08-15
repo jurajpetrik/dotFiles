@@ -172,6 +172,8 @@ assign [class="google-chrome"] $workspace1
 assign [class="Thunar"] $workspace4
 assign [class="MPlayer"] $workspace3
 assign [class="Spotify"] $workspace3
+assign [class="Slack"] $workspace8
+assign [instance="MessengerForDesktop"] $workspace8
 assign [class="Transmission-gtk"] $workspace4
 #Applications to start at startup
 exec_always --no-startup-id compton -D 0
