@@ -40,6 +40,7 @@ export PROMPT_COMMAND='history -a'
 #this is necessary for i3-nagbar. It executes its commands in i3-sensible-terminal. i3-sensible-terminal runs either the command set in $TERMINAL or falls back to some default terminals. 
 export TERMINAL='termite'
 
+export GIT_EDITOR='vim'
 # unlimited bash history, just keep appending
 unset HISTSIZE 
 unset HISTFILESIZE
