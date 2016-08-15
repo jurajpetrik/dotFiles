@@ -114,6 +114,8 @@ let g:airlinesymbols.paste = '?'
 let g:airlinesymbols.paste = 'Þ'
 let g:airlinesymbols.paste = '?'
 let g:airlinesymbols.whitespace = '?'
+
+set laststatus=2 "show airline on vimstart
 " Settings for airline
 " Try to recognize filetype, turn on specific plugins and indentation 
 filetype plugin indent on

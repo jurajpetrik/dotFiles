@@ -24,6 +24,7 @@
   preloadindex = true
   fscache = true
   whitespace = cr-at-eol
+	editor = /usr/local/bin/vim
 [gc]
   auto = 0
 [push]
