@@ -25,6 +25,7 @@
   fscache = true
   whitespace = cr-at-eol
 	editor = /usr/local/bin/vim
+	excludesfile = ~/.global_ignore
 [gc]
   auto = 0
 [push]

@@ -62,9 +62,6 @@ vnoremap // y/<C-R>" <CR>
 " leader + esc to clear search highlighting
 nnoremap <Leader><Esc> :noh<CR>
 
-" leader + f  == fuzzy file search ( using ctrl+p plugin)
-nnoremap <Leader>f :CtrlP<CR>
-
 " make Y yank to the end of line, consistent with C,D (change, delete)
 nnoremap Y y$
 
@@ -82,9 +79,17 @@ Plug 'scrooloose/syntastic' " linting
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'tpope/vim-commentary' " add motion for commenting
 Plug 'heavenshell/vim-jsdoc' " jsdoc generator
-Plug 'kien/ctrlp.vim' " fuzzy file search
 Plug 'pangloss/vim-javascript' " better js syntax highlighting
 Plug 'vim-airline/vim-airline'
+Plug 'craigemery/vim-autotag' " generate ctags on file save
+
+Plug 'rstacruz/vim-fastunite' " packaged distribution of unite.vim
+Plug 'Shougo/vimproc.vim', { 'do': 'make' } 
+Plug 'Shougo/unite.vim' 
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-outline'
+Plug 'tsukkee/unite-tag'
+
 call plug#end()
 
 " Settings for Syntastic
@@ -97,6 +102,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
+" Settings for Syntastic
 
 " Settings for airline
 if !exists('g:airlinesymbols')
@@ -117,10 +123,12 @@ let g:airlinesymbols.whitespace = '?'
 
 set laststatus=2 "show airline on vimstart
 " Settings for airline
+
+" -------------------------- PLUGINS  -------------------------------
+
 " Try to recognize filetype, turn on specific plugins and indentation 
 filetype plugin indent on
 
-" Syntastic plugin (
 " ------------------------ COLOR SCHEME ---------------------------
 colorscheme hybrid
 set background=dark
