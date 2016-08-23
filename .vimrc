@@ -83,6 +83,23 @@ nmap S :w<CR>
 " Ctrl - u to uppercase current word in insert mode
 imap <C-u> <Esc>gUiwea
 
+" Ctrl + [hjkl] to move in splits
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" Leader + Escape, clear search highlighting
+nmap <silent> <Leader><Esc> :noh<CR>
+
+" Leader + v, open vertical split
+nmap <Leader>v :vsplit<CR>
+" Leader + s, open horizontal split
+nmap <Leader>s :split<CR>
+
+"Leader + r, source vimrc
+nmap <Leader>r :source ~/.vimrc<CR> :echo "Source config file"<CR>
+
 " go to previous, next location bindings. (useful for syntastic plugin, jump
 " to the next/prev error)
 nnoremap <Leader>n :lnext<CR>
