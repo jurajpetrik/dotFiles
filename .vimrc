@@ -77,6 +77,11 @@ nmap <Leader>o o<Esc>
 " Ctrl + O insert new line above, stay in normal mode
 nmap <Leader>O O<Esc>
 
+" S to write file
+nmap S :w<CR>
+
+" Ctrl - u to uppercase current word in insert mode
+imap <C-u> <Esc>gUiwea
 
 " go to previous, next location bindings. (useful for syntastic plugin, jump
 " to the next/prev error)
