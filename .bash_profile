@@ -5,5 +5,7 @@ if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
-startx
+if [ -z "$TMUX" ]; then
+  # not in tmux, do non-tmux things
+  startx
+fi
