@@ -10,7 +10,7 @@ set list
 set title
 
 " use system clipboard by default
-set clipboard=unnamedplus
+set clipboard=unnamedplus,unnamed
 
 " Ignore case when searching
 set ignorecase
@@ -70,6 +70,13 @@ vnoremap // y/<C-R>" <CR>
 
 " make Y yank to the end of line, consistent with C,D (change, delete)
 nnoremap Y y$
+
+" Ctrl + o insert new line below, stay in normal mode
+nmap <Leader>o o<Esc>
+
+" Ctrl + O insert new line above, stay in normal mode
+nmap <Leader>O O<Esc>
+
 
 " go to previous, next location bindings. (useful for syntastic plugin, jump
 " to the next/prev error)
