@@ -83,12 +83,6 @@ nmap S :w<CR>
 " Ctrl - u to uppercase current word in insert mode
 imap <C-u> <Esc>gUiwea
 
-" Ctrl + [hjkl] to move in splits
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
-
 " Leader + Escape, clear search highlighting
 nmap <silent> <Leader><Esc> :noh<CR>
 
@@ -129,6 +123,7 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'tsukkee/unite-tag'
 Plug 'tpope/vim-sensible'
+Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 call plug#end()
 
 " Settings for Syntastic
