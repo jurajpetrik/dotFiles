@@ -95,7 +95,7 @@ nmap <silent> <Leader><Esc> :noh<CR>
 " Leader + v, open vertical split
 nmap <Leader>v :vsplit<CR>
 " Leader + s, open horizontal split
-nmap <Leader>s :split<CR>
+nmap <Leader>b :split<CR>
 
 "Leader + r, source vimrc
 nmap <Leader>r :source ~/.vimrc<CR> :echo "Source config file"<CR>
