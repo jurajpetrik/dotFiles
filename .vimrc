@@ -86,9 +86,8 @@ imap <C-u> <Esc>gUiwea
 " Leader + Escape, clear search highlighting
 nmap <silent> <Leader><Esc> :noh<CR>
 
-" Leader + v, open vertical split
+" Splits keybindings
 nmap <Leader>v :vsplit<CR>
-" Leader + s, open horizontal split
 nmap <Leader>b :split<CR>
 
 "Leader + r, source vimrc
@@ -114,7 +113,7 @@ Plug 'heavenshell/vim-jsdoc' " jsdoc generator
 Plug 'pangloss/vim-javascript', { 'for': 'javasript' } " better js syntax highlighting
 Plug 'vim-airline/vim-airline' " status bar
 Plug 'craigemery/vim-autotag' " generate ctags on file save
-
+switcswitchh
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/unite.vim'
 Plug 'rstacruz/vim-fastunite'
@@ -123,8 +122,17 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'tsukkee/unite-tag'
 Plug 'tpope/vim-sensible'
+" Plug 'scrooloose/nerdtree' " tree explorer
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
+Plug 'breuckelen/vim-resize'
 call plug#end()
+
+" Settings for vim-resize
+let g:vim_resize_disable_auto_mappings = 1
+nnoremap <silent> <c-H> :CmdResizeLeft<cr>
+nnoremap <silent> <c-J> :CmdResizeDown<cr>
+nnoremap <silent> <c-K> :CmdResizeUp<cr>
+nnoremap <silent> <c-L> :CmdResizeRight<cr>
 
 " Settings for Syntastic
 set statusline+=%#warningmsg#
