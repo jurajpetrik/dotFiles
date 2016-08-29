@@ -17,6 +17,7 @@
   cob = checkout -b
   unstage = reset HEAD
   amend = commit --amend --no-edit
+  pop = stash pop
 [user]
   email = jpe@coinify.com
   name = Juraj Petrik
