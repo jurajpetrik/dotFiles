@@ -5,7 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
 #aliases
 
 #make sudo expand aliases http://unix.stackexchange.com/a/148548
@@ -13,14 +12,15 @@ alias sudo='sudo '
 
 # Colorize ls outputs
 alias ls='ls -GpFh'
-
 alias g=git
 alias v=vim
 alias vi=vim
 alias p=pacman
 alias up="cd .."
+
 # If you pipe colored output to less, keep the colors
 alias less="less -r"
+
 #functions
 
 # gdiff is diff styled like git diff
@@ -32,6 +32,8 @@ function weather () { curl http://wttr.in/$@; }
 # make a directory and cd to it with one command
 function mkcd () { mkdir $1; cd $1; }
 
+# Environment variables
+
 # write history to ~/.bash_history after every command. Ensures history is saved across multiple terminals
 # http://northernmost.org/blog/flush-bash_history-after-each-command/
 export PROMPT_COMMAND='history -a'
@@ -40,6 +42,7 @@ export PROMPT_COMMAND='history -a'
 export TERMINAL='termite'
 
 export GIT_EDITOR='vim'
+export EDITOR='vim'
 # unlimited bash history, just keep appending
 unset HISTSIZE 
 unset HISTFILESIZE
