@@ -127,6 +127,11 @@ Plug 'tpope/vim-sensible'
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 call plug#end()
 
+" s to surround
+
+nmap s  <Plug>Ysurround
+
+
 " Settings for Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
