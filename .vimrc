@@ -99,6 +99,7 @@ nmap <Leader>r :source ~/.vimrc<CR> :echo "Source config file"<CR>
 nnoremap <Leader>n :lnext<CR>
 nnoremap <Leader>N :lprev<CR>
 
+nmap <Leader>l :bprevious<CR>
 " Ctrl+p to search for files
 map <C-p> [unite]p
 

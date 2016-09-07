@@ -55,3 +55,4 @@ PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1
 eval $(thefuck --alias)
 alias pls=fuck
 alias dotfiles="cd ~/src/dotfiles"
+alias dockerup="docker-machine start default;docker-machine env default; eval $(docker-machine env default)"
