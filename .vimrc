@@ -106,8 +106,10 @@ nmap <Leader>l :b#<CR>
 
 " show loaded buffers
 nmap <Leader>f :files<CR>
-" Ctrl+p to search for files
-map <C-p> [unite]p
+
+" s to surround
+nmap s <Plug>Ysurround
+
 
 " -------------------------- PLUGINS  -------------------------------
 
@@ -121,22 +123,10 @@ Plug 'heavenshell/vim-jsdoc' " jsdoc generator
 Plug 'pangloss/vim-javascript', { 'for': 'javasript' } " better js syntax highlighting
 Plug 'vim-airline/vim-airline' " status bar
 Plug 'craigemery/vim-autotag' " generate ctags on file save
-
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/unite.vim'
-Plug 'rstacruz/vim-fastunite'
-
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite-outline'
-Plug 'tsukkee/unite-tag'
-Plug 'tpope/vim-sensible'
+Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
+Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can agree on
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 call plug#end()
-
-" s to surround
-
-nmap s  <Plug>Ysurround
-
 
 " Settings for Syntastic
 set statusline+=%#warningmsg#
