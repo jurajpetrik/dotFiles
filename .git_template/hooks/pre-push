@@ -26,7 +26,7 @@ if [ -d "$APP_FOLDER" ]; then
     # Will enter here if "$GIT_ROOT" exists, even if it contains spaces
     cd $APP_FOLDER
     if [ -a "package.json" ]; then
-      npm run test
+      npm run test -- -b
       npm run lint
     fi
 fi
