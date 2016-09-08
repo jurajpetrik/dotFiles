@@ -79,7 +79,7 @@ nmap <Leader>o o<Esc>
 " Ctrl + O insert new line above, stay in normal mode
 nmap <Leader>O O<Esc>
 
-" S to write file
+" ctrl-s to write file
 nmap S :w<CR>
 
 " Ctrl - u to uppercase current word in insert mode
@@ -101,7 +101,11 @@ nmap <Leader>r :source ~/.vimrc<CR> :echo "Source config file"<CR>
 nnoremap <Leader>n :lnext<CR>
 nnoremap <Leader>N :lprev<CR>
 
-nmap <Leader>l :bprevious<CR>
+" last open buffer
+nmap <Leader>l :b#<CR>
+
+" show loaded buffers
+nmap <Leader>f :files<CR>
 " Ctrl+p to search for files
 map <C-p> [unite]p
 

@@ -7,8 +7,8 @@ MESSAGE="$(cat $1)"
 TICKET_IN_MESSAGE=$(parse_git_tracker_and_ticket $MESSAGE)
 if [ -n "$TICKET_IN_MESSAGE" ]
 then
-	echo "$MESSAGE" > $1
-	exit 0
+  echo "$MESSAGE" > $1
+  exit 0
 fi
 
 GIT_BRANCH=$(git symbolic-ref --short HEAD)

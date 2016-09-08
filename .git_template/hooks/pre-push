@@ -18,7 +18,7 @@
 #
 # This sample shows how to prevent push of commits where the log message starts
 # with "WIP" (work in progress).
-
+set -e
 GIT_ROOT=$(git rev-parse --show-toplevel)
 APP_FOLDER="$GIT_ROOT/app"
 
@@ -26,7 +26,7 @@ if [ -d "$APP_FOLDER" ]; then
     # Will enter here if "$GIT_ROOT" exists, even if it contains spaces
     cd $APP_FOLDER
     if [ -a "package.json" ]; then
-      npm run test
+      npm run test -- -b
       npm run lint
     fi
 fi
