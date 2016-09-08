@@ -65,6 +65,8 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = "\<Space>"
 
+nmap ; :
+
 " double slash to search for visually selected text
 vnoremap // y/<C-R>" <CR>
 
@@ -87,9 +89,9 @@ imap <C-u> <Esc>gUiwea
 nmap <silent> <Leader><Esc> :noh<CR>
 
 " Leader + v, open vertical split
-nmap <Leader>v :vsplit<CR>
+nmap <Leader>v :vnew<CR>
 " Leader + s, open horizontal split
-nmap <Leader>b :split<CR>
+nmap <Leader>b :new<CR>
 
 "Leader + r, source vimrc
 nmap <Leader>r :source ~/.vimrc<CR> :echo "Source config file"<CR>

@@ -20,6 +20,9 @@ alias up="cd .."
 
 # If you pipe colored output to less, keep the colors
 alias less="less -r"
+alias pls=fuck
+alias dotfiles="cd ~/src/dotfiles"
+alias dockerup="docker-machine start default;docker-machine env default; eval $(docker-machine env default)"
 
 #functions
 
@@ -43,16 +46,13 @@ export TERMINAL='termite'
 
 export GIT_EDITOR='vim'
 export EDITOR='vim'
-# unlimited bash history, just keep appending
 unset HISTSIZE 
 unset HISTFILESIZE
-shopt -s histappend
+
 # /unlimited bash history, just keep appending
+shopt -s histappend
 
 # Styling the console prompt
 PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 
 eval $(thefuck --alias)
-alias pls=fuck
-alias dotfiles="cd ~/src/dotfiles"
-alias dockerup="docker-machine start default;docker-machine env default; eval $(docker-machine env default)"
