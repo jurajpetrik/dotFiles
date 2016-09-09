@@ -105,8 +105,9 @@ nnoremap <Leader>N :lprev<CR>
 " last open buffer
 nnoremap <Leader>l :b#<CR>
 
-" show loaded buffers
-nnoremap <Leader>f :files<CR>
+" choose buffer
+nnoremap <Leader>f :files<CR>:b
+nnoremap gb :files<CR>:b
 
 " s to surround
 nmap s <Plug>Ysurround
@@ -128,6 +129,9 @@ Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
 Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can agree on
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 call plug#end()
+
+"make ctrlP ignore gitfiles
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Settings for Syntastic
 set statusline+=%#warningmsg#
