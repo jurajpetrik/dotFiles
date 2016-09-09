@@ -65,7 +65,8 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = "\<Space>"
 
-nmap ; :
+nnoremap ; :
+nnoremap : ;
 
 " double slash to search for visually selected text
 vnoremap // y/<C-R>" <CR>
@@ -80,21 +81,21 @@ nmap <Leader>o o<Esc>
 nmap <Leader>O O<Esc>
 
 " ctrl-s to write file
-nmap S :w<CR>
+nnoremap S :w<CR>
 
 " Ctrl - u to uppercase current word in insert mode
 imap <C-u> <Esc>gUiwea
 
 " Leader + Escape, clear search highlighting
-nmap <silent> <Leader><Esc> :noh<CR>
+nnoremap <silent> <Leader><Esc> :noh<CR>
 
 " Leader + v, open vertical split
-nmap <Leader>v :vnew<CR>
+nnoremap <Leader>v :vnew<CR>
 " Leader + s, open horizontal split
-nmap <Leader>b :new<CR>
+nnoremap <Leader>b :new<CR>
 
 "Leader + r, source vimrc
-nmap <Leader>r :source ~/.vimrc<CR> :echo "Source config file"<CR>
+nnoremap <Leader>r :source ~/.vimrc<CR> :echo "Source config file"<CR>
 
 " go to previous, next location bindings. (useful for syntastic plugin, jump
 " to the next/prev error)
@@ -102,10 +103,10 @@ nnoremap <Leader>n :lnext<CR>
 nnoremap <Leader>N :lprev<CR>
 
 " last open buffer
-nmap <Leader>l :b#<CR>
+nnoremap <Leader>l :b#<CR>
 
 " show loaded buffers
-nmap <Leader>f :files<CR>
+nnoremap <Leader>f :files<CR>
 
 " s to surround
 nmap s <Plug>Ysurround
