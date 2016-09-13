@@ -65,6 +65,9 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = "\<Space>"
 
+" get rid of that pesky typo
+nnoremap q: :q
+
 nnoremap ; :
 nnoremap : ;
 
