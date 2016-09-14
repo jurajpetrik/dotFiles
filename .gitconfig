@@ -18,7 +18,7 @@
   unstage = reset HEAD
   amend = commit --amend --no-edit
   pop = stash pop
-  touched = "!f() { BASE_BRANCH=${1:-develop}; printf \"Files changed since branched out from $BASE_BRANCH\n\"; git diff HEAD $(git merge-base HEAD  $BASE_BRANCH) --name-only; }; f"
+  touched = "!f() { BASE_BRANCH=${1:-develop}; printf \"Files changed since branched out from $BASE_BRANCH:\n\n\"; git diff HEAD $(git merge-base HEAD  $BASE_BRANCH) --name-only; }; f"
 [user]
   email = jpe@coinify.com
   name = Juraj Petrik
