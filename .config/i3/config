@@ -80,12 +80,12 @@ bindsym $mod+a focus parent
 # set workspace name vars
 set $workspace1   1: surf
 set $workspace2   2: term
-set $workspace3   3: play
+set $workspace3   3: music
 set $workspace4   4: media
 set $workspace5   5: vbox
 set $workspace6   6: term
 set $workspace7   7: netw
-set $workspace8   8: chat
+set $workspace8   8: chat
 set $workspace9   9: news
 set $workspace10  10: misc
 
@@ -152,7 +152,7 @@ hide_edge_borders both
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	font pango: System San Francisco Display, FontAwesome 9
+	font pango: System San Francisco Display, FontAwesome 10
 	status_command i3status
 	#tray_output primary
 	colors {
@@ -171,7 +171,7 @@ focus_on_window_activation focus
 assign [class="google-chrome"] $workspace1
 assign [class="Thunar"] $workspace4
 assign [class="MPlayer"] $workspace3
-assign [class="Spotify"] $workspace3
+for_window [class="Spotify"] move to workspace $workspace3
 assign [class="Slack"] $workspace8
 assign [instance="MessengerForDesktop"] $workspace8
 assign [class="Transmission-gtk"] $workspace4
@@ -182,3 +182,4 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
 exec_always messengerfordesktop
 exec_always slack
+exec_always --no-startup-id i3-msg 'workspace $workspace8; exec $term -e weechat; workspace $workspace1'
