@@ -180,6 +180,6 @@ exec_always --no-startup-id compton -D 0
 exec --no-startup-id nm-applet
 #pick a random wallpaper
 exec_always --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
-exec_always messengerfordesktop
-exec_always slack
+exec_always --no-startup-id messengerfordesktop
+exec_always --no-startup-id slack
 exec_always --no-startup-id i3-msg 'workspace $workspace8; exec $term -e weechat; workspace $workspace1'
