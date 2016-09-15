@@ -13,8 +13,8 @@ alias sudo='sudo '
 # Colorize ls outputs
 alias ls='ls -GpFh'
 alias g=git
-alias v=vim
-alias vi=vim
+alias v=nvim
+alias vi=nvim
 alias p=pacman
 alias up="cd .."
 

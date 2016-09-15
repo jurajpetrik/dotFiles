@@ -14,8 +14,10 @@ ln -nfs $PWD/.tmux.conf ~/.tmux.conf
 ln -nfs $PWD/.vim ~/.vim 
 ln -nfs $PWD/.vimrc ~/.vimrc 
 ln -nfs $PWD/.wallpaper ~/.wallpaper 
-mkdir -p ~/.config
+mkdir -p ~/.config/nvim
 ln -nfs $PWD/.config/* ~/.config/
+ln -nfs $PWD/.vim/* ~/.config/nvim/
+ln -nfs $PWD/.vimrc ~/.config/nvim/init.vim
 
 PATH_TO_APPEND=$(echo $PATH | cut -d':' -f 1)
 PATH_TO_READ=$PWD/path
