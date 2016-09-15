@@ -1,4 +1,4 @@
-#
+
 # ~/.bashrc
 #
 
@@ -31,6 +31,9 @@ function gdiff () { diff -u $@ | colordiff | less -R; }
 
 # weather from the terminal yo
 function weather () { curl http://wttr.in/$@; }
+
+# moon from the terminal yo
+function moon () { curl http://wttr.in/Moon@$@; }
 
 # make a directory and cd to it with one command
 function mkcd () { mkdir $1; cd $1; }
