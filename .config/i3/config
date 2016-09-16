@@ -175,11 +175,15 @@ for_window [class="Spotify"] move to workspace $workspace3
 assign [class="Slack"] $workspace8
 assign [instance="MessengerForDesktop"] $workspace8
 assign [class="Transmission-gtk"] $workspace4
+
 #Applications to start at startup
 exec_always --no-startup-id compton -D 0
 exec --no-startup-id nm-applet
+
 #pick a random wallpaper
 exec_always --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
 exec_always --no-startup-id messengerfordesktop
 exec_always --no-startup-id slack
-exec_always --no-startup-id i3-msg 'workspace $workspace8; exec $term -e weechat; workspace $workspace1'
+#
+# go to $workspace 8, start terminal with weechat in it. set layout to stacking, go to $workspace1
+exec_always --no-startup-id i3-msg 'workspace $workspace8; exec $term -e weechat; layout stacking; workspace $workspace1'

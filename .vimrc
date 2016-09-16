@@ -109,8 +109,10 @@ nnoremap <Leader>N :lprev<CR>
 nnoremap <Leader>l :b#<CR>
 
 " choose buffer
-nnoremap <Leader>f :files<CR>:b
-nnoremap gb :files<CR>:b
+nnoremap gb :CtrlPBuffer<CR>
+nnoremap gf :CtrlP<CR>
+nnoremap gr :CtrlPMRU<CR>
+nnoremap <c-p> :CtrlPMixed<CR>
 
 " s to surround
 nmap s <Plug>Ysurround
