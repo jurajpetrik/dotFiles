@@ -151,25 +151,14 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
 " Settings for Syntastic
 
-" Settings for airline
-if !exists('g:airlinesymbols')
-  let g:airlinesymbols = {}
+" let g:airline#extensions#tabline#enabled = 1
+set encoding=utf-8
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
 endif
-let g:airlineleftsep = '»'
-let g:airlineleftsep = '?'
-let g:airlinerightsep = '«'
-let g:airlinerightsep = '?'
-let g:airlinesymbols.linenr = '?'
-let g:airlinesymbols.linenr = '?'
-let g:airlinesymbols.linenr = '¶'
-let g:airlinesymbols.branch = '? '
-let g:airlinesymbols.paste = '?'
-let g:airlinesymbols.paste = 'Þ'
-let g:airlinesymbols.paste = '?'
-let g:airlinesymbols.whitespace = '?'
-
-" Settings for airline
-
+let g:airline_symbols.space = "\ua0"
+set noshowmode
 " -------------------------- PLUGINS  -------------------------------
 
 
