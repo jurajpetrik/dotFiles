@@ -112,6 +112,7 @@ nnoremap <Leader>l :b#<CR>
 nnoremap gb :CtrlPBuffer<CR>
 nnoremap gf :CtrlP<CR>
 nnoremap gr :CtrlPMRU<CR>
+nnoremap gt :CtrlPTag<CR>
 nnoremap <c-p> :CtrlPMixed<CR>
 
 " s to surround
