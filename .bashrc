@@ -22,7 +22,7 @@ alias up="cd .."
 alias less="less -r"
 alias pls=fuck
 alias dotfiles="cd ~/src/dotfiles"
-alias dockerup="docker-machine start default;docker-machine env default; eval $(docker-machine env default)"
+alias dockerup="docker-machine start default;docker-machine env default;eval $(docker-machine env default)"
 
 #functions
 
