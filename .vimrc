@@ -139,6 +139,7 @@ Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs'
+Plug 'tpope/vim-fugitive' " git wrapper
 call plug#end()
 
 " use deoplete
@@ -157,6 +158,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
+
 " Settings for Syntastic
 let g:airline_powerline_fonts = 1
 set noshowmode
