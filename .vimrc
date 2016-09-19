@@ -98,7 +98,7 @@ nnoremap <Leader>v :vnew<CR>
 nnoremap <Leader>b :new<CR>
 
 "Leader + r, source vimrc
-nnoremap <Leader>r :source ~/.vimrc<CR> :echo "Source config file"<CR>
+nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
 
 " go to previous, next location bindings. (useful for syntastic plugin, jump
 " to the next/prev error)
@@ -113,6 +113,9 @@ nnoremap gb :CtrlPBuffer<CR>
 nnoremap gf :CtrlP<CR>
 nnoremap gr :CtrlPMRU<CR>
 nnoremap gt :CtrlPTag<CR>
+" last open buffer
+nnoremap gl :b#<CR>
+
 nnoremap <c-p> :CtrlPMixed<CR>
 
 " s to surround
@@ -134,7 +137,12 @@ Plug 'craigemery/vim-autotag' " generate ctags on file save
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
 Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can agree on
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs'
 call plug#end()
+
+" use deoplete
+let g:deoplete#enable_at_startup = 1
 
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -150,14 +158,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
 " Settings for Syntastic
-
-" let g:airline#extensions#tabline#enabled = 1
-set encoding=utf-8
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
+let g:airline_powerline_fonts = 1
 set noshowmode
 " -------------------------- PLUGINS  -------------------------------
 
