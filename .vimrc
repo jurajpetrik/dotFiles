@@ -140,10 +140,16 @@ Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'tpope/vim-fugitive' " git wrapper
+Plug 'craigemery/vim-autotag'
 call plug#end()
 
 " use deoplete
 let g:deoplete#enable_at_startup = 1
+" automatically close preview window of deoplete once chose sth
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
