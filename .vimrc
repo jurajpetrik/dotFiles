@@ -127,7 +127,6 @@ nmap s <Plug>Ysurround
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
 Plug 'scwood/vim-hybrid' " colorscheme
-Plug 'scrooloose/syntastic' " linting
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'tpope/vim-commentary' " add motion for commenting
 Plug 'heavenshell/vim-jsdoc' " jsdoc generator
@@ -141,6 +140,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'tpope/vim-fugitive' " git wrapper
 Plug 'craigemery/vim-autotag'
+Plug 'neomake/neomake' "linting
 call plug#end()
 
 " use deoplete
@@ -153,6 +153,13 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+"Settings for neomake (linter)
+let g:neomake_javascript_eslint_maker = {
+    \ 'args': ['--verbose'],
+    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+    \ }
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 " Settings for Syntastic
 set statusline+=%#warningmsg#
