@@ -69,7 +69,10 @@ let mapleader = "\<Space>"
 nnoremap q: :q
 
 nnoremap ; :
+vnoremap ; :
+
 nnoremap : ;
+vnoremap : ;
 
 " double slash to search for visually selected text
 vnoremap // y/<C-R>" <CR>
