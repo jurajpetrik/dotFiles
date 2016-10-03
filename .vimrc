@@ -110,9 +110,9 @@ set directory=~/.vim/directory
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "move line up
-nmap - ddkP
+nnoremap - ddkP
 "move line down
-nmap _ ddp
+nnoremap _ ddp
 
 " set Leader key to spacebar
 let mapleader = "\<Space>"
@@ -133,10 +133,10 @@ vnoremap // y/<C-R>" <CR>
 nnoremap Y y$
 
 " Ctrl + o insert new line below, stay in normal mode
-nmap <Leader>o o<Esc>
+nnoremap <Leader>o o<Esc>
 
 " Ctrl + O insert new line above, stay in normal mode
-nmap <Leader>O O<Esc>
+nnoremap <Leader>O O<Esc>
 
 " ctrl-s to write file
 nnoremap S :w<CR>
@@ -176,7 +176,7 @@ nnoremap gl :b#<CR>
 nnoremap <c-p> :CtrlPMixed<CR>
 
 " s to surround
-nmap s <Plug>Ysurround
+nnoremap s <Plug>Ysurround
 
 " ------------------------ COLOR SCHEME ---------------------------
 colorscheme hybrid
