@@ -109,6 +109,10 @@ set backupdir=~/.vim/backupdir
 set directory=~/.vim/directory
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
+"move line up
+nmap - ddkP
+"move line down
+nmap _ ddp
 
 " set Leader key to spacebar
 let mapleader = "\<Space>"
