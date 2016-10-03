@@ -137,9 +137,6 @@ nmap <Leader>O O<Esc>
 " ctrl-s to write file
 nnoremap S :w<CR>
 
-" Ctrl - u to uppercase current word in insert mode
-imap <C-u> <Esc>gUiwea
-
 " Leader + Escape, clear search highlighting
 nnoremap <silent> <Leader><Esc> :noh<CR>
 
@@ -160,11 +157,15 @@ nnoremap <Leader>N :lprev<CR>
 " last open buffer
 nnoremap <Leader>l :b#<CR>
 
+inoremap (  ()<Esc>hli
+inoremap {  {<CR><CR>}<Esc>ki
+
 " choose buffer
 nnoremap gb :CtrlPBuffer<CR>
 nnoremap gf :CtrlP<CR>
 nnoremap gr :CtrlPMRU<CR>
 nnoremap gt :CtrlPTag<CR>
+
 " last open buffer
 nnoremap gl :b#<CR>
 
