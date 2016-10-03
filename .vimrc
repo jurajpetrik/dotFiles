@@ -46,9 +46,6 @@ let g:airline_powerline_fonts = 1
 set noshowmode
 " -------------------------- PLUGINS  -------------------------------
 
-
-
-
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
@@ -61,7 +58,7 @@ set list
 set title
 
 " use system clipboard by default
-set clipboard=unnamedplus,unnamed
+set clipboard^=unnamedplus,unnamed
 
 " Ignore case when searching
 set ignorecase
@@ -153,6 +150,7 @@ nnoremap <Leader>b :new<CR>
 
 "Leader + r, source vimrc
 nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
+ca src source $MYVIMRC
 
 " go to previous, next location bindings. (useful for syntastic plugin, jump
 " to the next/prev error)
@@ -174,9 +172,6 @@ nnoremap <c-p> :CtrlPMixed<CR>
 
 " s to surround
 nmap s <Plug>Ysurround
-
-
-
 
 " ------------------------ COLOR SCHEME ---------------------------
 colorscheme hybrid
