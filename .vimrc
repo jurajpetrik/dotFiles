@@ -19,6 +19,15 @@ Plug 'tpope/vim-fugitive' " git wrapper
 Plug 'craigemery/vim-autotag'
 call plug#end()
 
+"tmux + vim seamless navigation with Alt+<hjkl>
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
+
 " use deoplete
 let g:deoplete#enable_at_startup = 1
 " automatically close preview window of deoplete once chose sth
@@ -182,3 +191,8 @@ nnoremap s <Plug>Ysurround
 colorscheme hybrid
 set background=dark
 " ------------------------ COLOR SCHEME ---------------------------
+
+"Remember last cursor position between file closes
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
