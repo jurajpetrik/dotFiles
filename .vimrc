@@ -182,3 +182,8 @@ nnoremap s <Plug>Ysurround
 colorscheme hybrid
 set background=dark
 " ------------------------ COLOR SCHEME ---------------------------
+
+"Remember last cursor position between file closes
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
