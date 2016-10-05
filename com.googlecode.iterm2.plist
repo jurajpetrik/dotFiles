@@ -251,11 +251,11 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>1318 396 924 485 1280 -347 1080 1920 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1368 351 796 473 1280 -347 1080 1920 </string>
+	<string>1368 289 796 473 1280 -347 1080 1920 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>2514 506 592 584 2360 -87 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1506 718 585 377 1280 -347 1080 1897 </string>
+	<string>1280 -347 1075 1897 1280 -347 1080 1897 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 344 570 452 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -642,6 +642,13 @@
 					<key>Text</key>
 					<string>[1;6D</string>
 				</dict>
+				<key>0xf702-0x280000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>b</string>
+				</dict>
 				<key>0xf703-0x220000</key>
 				<dict>
 					<key>Action</key>
@@ -662,6 +669,13 @@
 					<integer>10</integer>
 					<key>Text</key>
 					<string>[1;6C</string>
+				</dict>
+				<key>0xf703-0x280000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>f</string>
 				</dict>
 				<key>0xf704-0x20000</key>
 				<dict>
@@ -1050,7 +1064,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-10-04T07:31:42Z</date>
+	<date>2016-10-05T10:48:32Z</date>
 	<key>SUSkippedVersion</key>
 	<string>3.0.5</string>
 	<key>SavePasteHistory</key>
