@@ -1,4 +1,6 @@
+!.vim/
 .vim/*
+!.vim/custom/folds.vim
 !.vim/autoload/plug.vim
 .tmux
 !.tmux/plugings/tpm
