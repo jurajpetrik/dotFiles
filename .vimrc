@@ -99,8 +99,8 @@ set relativenumber
 " turn on syntax highlighting
 syntax on
 
-" open new split panes to the right and bottom
-set splitbelow
+" open new split panes to the right and top
+set nosplitbelow
 set splitright
 
 " Maintain undo history between sessions (file closed, opened again)
