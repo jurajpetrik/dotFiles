@@ -1,3 +1,4 @@
+source ~/.vim/custom/folds.vim
 " -------------------------- PLUGINS  -------------------------------
 
 call plug#begin('~/.vim/plugged')
@@ -140,6 +141,9 @@ vnoremap // y/<C-R>" <CR>
 
 " make Y yank to the end of line, consistent with C,D (change, delete)
 nnoremap Y y$
+" make V and vv work analagous to C,cc ; D, dd;
+nnoremap V v$
+nnoremap vv V
 
 " Ctrl + o insert new line below, stay in normal mode
 nnoremap <Leader>o o<Esc>
