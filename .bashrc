@@ -17,26 +17,28 @@ alias v=nvim
 alias vi=nvim
 alias p=pacman
 alias up="cd .."
-
 # If you pipe colored output to less, keep the colors
 alias less="less -r"
 alias pls=fuck
 alias dotfiles="cd ~/src/dotfiles"
-alias dockerup="docker-machine start default;docker-machine env default;eval $(docker-machine env default)"
+alias dockerup='docker-machine start default;docker-machine env default;eval $(docker-machine env default)'
+alias -- -='cd -'
 
 #functions
+groot(){ cd "$(git rev-parse --show-toplevel)"; }
+gr(){ cd "$(git rev-parse --show-toplevel)"; }
 
 # gdiff is diff styled like git diff
-function gdiff () { diff -u $@ | colordiff | less -R; }
+gdiff() { diff -u $@ | colordiff | less -R; }
 
 # weather from the terminal yo
-function weather () { curl http://wttr.in/$@; }
+weather() { curl http://wttr.in/$@; }
 
 # moon from the terminal yo
-function moon () { curl http://wttr.in/Moon@$@; }
+moon() { curl http://wttr.in/Moon@$@; }
 
 # make a directory and cd to it with one command
-function mkcd () { mkdir $1; cd $1; }
+mkcd() { mkdir $1; cd $1; }
 
 # Environment variables
 
