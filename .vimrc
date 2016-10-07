@@ -120,9 +120,9 @@ set directory=~/.vim/directory
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
 "move line up
-nnoremap - ddkP
+nnoremap - ddkP==
 "move line down
-nnoremap _ ddp
+nnoremap _ ddp==
 
 " set Leader key to spacebar
 let mapleader = "\<Space>"
