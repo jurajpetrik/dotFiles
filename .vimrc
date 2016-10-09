@@ -119,13 +119,23 @@ set backupdir=~/.vim/backupdir
 set directory=~/.vim/directory
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
+" set Leader key to spacebar
+let mapleader = "\<Space>"
+
+:tnoremap <A-h> <C-\><C-n><C-w>h
+:tnoremap <A-j> <C-\><C-n><C-w>j
+:tnoremap <A-k> <C-\><C-n><C-w>k
+:tnoremap <A-l> <C-\><C-n><C-w>l
+
+" edit this file in a split
+nnoremap <Leader>er <Esc>:vsplit $MYVIMRC<CR>
+" source vimrc
+nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
+
 "move line up
 nnoremap - ddkP==
 "move line down
 nnoremap _ ddp==
-
-" set Leader key to spacebar
-let mapleader = "\<Space>"
 
 " get rid of that pesky typo
 nnoremap q: :q
@@ -146,10 +156,10 @@ nnoremap V v$
 nnoremap vv V
 
 " Ctrl + o insert new line below, stay in normal mode
-nnoremap <Leader>o o<Esc>
+nnoremap <Leader>o o<Esc>k
 
 " Ctrl + O insert new line above, stay in normal mode
-nnoremap <Leader>O O<Esc>
+nnoremap <Leader>O O<Esc>j
 
 " ctrl-s to write file
 nnoremap S :w<CR>
@@ -162,9 +172,8 @@ nnoremap <Leader>v :vnew<CR>
 " Leader + s, open horizontal split
 nnoremap <Leader>b :new<CR>
 
-"Leader + r, source vimrc
-nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
-ca src source $MYVIMRC
+" commented cause fucks up: cd src/..
+" ca src source $MYVIMRC
 
 " go to previous, next location bindings. (useful for syntastic plugin, jump
 " to the next/prev error)
@@ -176,6 +185,10 @@ nnoremap <Leader>l :b#<CR>
 
 inoremap (  ()<Esc>hli
 inoremap {  {<CR><CR>}<Esc>ki
+
+" in insert mode, write moduleName ,then Ctrl + e(xpand) 
+" =>  const moduleName = require('moduleName');
+inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
 
 " choose buffer
 nnoremap gb :CtrlPBuffer<CR>
