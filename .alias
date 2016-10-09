@@ -1,0 +1,35 @@
+#aliases
+
+#make sudo expand aliases http://unix.stackexchange.com/a/148548
+alias sudo='sudo '
+
+# Colorize ls outputs
+alias ls='ls -GpFh'
+alias g=git
+alias v=nvim
+alias vi=nvim
+alias p=pacman
+alias up="cd .."
+# If you pipe colored output to less, keep the colors
+alias less="less -r"
+alias pls=fuck
+alias dotfiles="cd ~/src/dotfiles"
+alias dockerup='docker-machine start default;docker-machine env default;eval $(docker-machine env default)'
+alias -- -='cd -'
+
+#functions
+groot(){ cd "$(git rev-parse --show-toplevel)"; }
+gr(){ cd "$(git rev-parse --show-toplevel)"; }
+
+# gdiff is diff styled like git diff
+gdiff() { diff -u $@ | colordiff | less -R; }
+
+# weather from the terminal yo
+weather() { curl http://wttr.in/$@; }
+
+# moon from the terminal yo
+moon() { curl http://wttr.in/Moon@$@; }
+
+# make a directory and cd to it with one command
+mkcd() { mkdir $1; cd $1; }
+

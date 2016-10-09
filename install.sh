@@ -13,7 +13,9 @@ ln -nfs $PWD/.tmux ~/.tmux
 ln -nfs $PWD/.tmux.conf ~/.tmux.conf 
 ln -nfs $PWD/.wallpaper ~/.wallpaper 
 
+echo "now?"
 ln -nfs $PWD/.vim/* ~/.vim/
+echo "?now"
 ln -nfs $PWD/.vimrc ~/.vimrc
 
 mkdir -p ~/.config/nvim
@@ -21,6 +23,10 @@ mkdir -p ~/.config/nvim
 ln -nfs $PWD/.config/* ~/.config/
 ln -nfs $PWD/.vim/* ~/.config/nvim/
 ln -nfs $PWD/.vimrc ~/.config/nvim/init.vim
+
+ln -nfs $PWD/.zshrc ~/.zshrc
+ln -nfs $PWD/.oh-my-zsh ~/.oh-my-zsh
+ln -nfs $PWD/.alias ~/.alias
 
 PATH_TO_APPEND=$(echo $PATH | cut -d':' -f 1)
 PATH_TO_READ=$PWD/path
