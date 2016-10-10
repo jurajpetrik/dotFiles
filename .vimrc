@@ -186,8 +186,11 @@ nnoremap <Leader>N :lprev<CR>
 " last open buffer
 nnoremap <Leader>l :b#<CR>
 
-inoremap (  ()<Esc>hli
-inoremap {  {<CR><CR>}<Esc>ki
+inoremap (  ()<Left>
+inoremap {  {}<Left>
+inoremap "  ""<Left>
+inoremap '  ''<Left>
+inoremap [  []<Left>
 
 " in insert mode, write moduleName ,then Ctrl + e(xpand) 
 " =>  const moduleName = require('moduleName');
