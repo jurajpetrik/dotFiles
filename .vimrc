@@ -122,6 +122,9 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = "\<Space>"
 
+nnoremap gs :Gstatus<CR>
+
+nnoremap K a<CR><Esc>
 nnoremap <silent> <Leader>t :vsplit<CR>:terminal<CR>
 
 :tnoremap <Esc> <C-\><C-n>
@@ -169,6 +172,7 @@ nnoremap S :w<CR>
 
 " Leader + Escape, clear search highlighting
 nnoremap <silent> <Leader><Esc> :noh<CR>
+vnoremap <silent> <Leader><Esc> :noh<CR>
 
 " Leader + v, open vertical split
 nnoremap <Leader>v :vnew<CR>

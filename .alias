@@ -3,6 +3,15 @@
 #make sudo expand aliases http://unix.stackexchange.com/a/148548
 alias sudo='sudo '
 
+# alias to source zshrc
+alias sz='source ~/.zshrc'
+alias reload='source ~/.zshrc'
+# convenience aliases for editing configs
+alias ev='nvim ~/.vimrc'
+alias et='nvim ~/.tmux.conf'
+alias ez='nvim ~/.zshrc'
+alias eg='nvim ~/.gitconfig'
+
 # Colorize ls outputs
 alias ls='ls -GpFh'
 alias g=git

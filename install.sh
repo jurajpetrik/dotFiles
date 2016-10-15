@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 ln -nfs $PWD/.Xresources ~/.Xresources
-ln -nfs $PWD/.bash_profile ~/.bash_profile
 ln -nfs $PWD/.colors ~/.colors
 ln -nfs $PWD/.ctags ~/.ctags 
 ln -nfs $PWD/.eslintrc ~/.eslintrc 
@@ -27,6 +26,7 @@ ln -nfs $PWD/.vimrc ~/.config/nvim/init.vim
 ln -nfs $PWD/.zshrc ~/.zshrc
 ln -nfs $PWD/.oh-my-zsh ~/.oh-my-zsh
 ln -nfs $PWD/.alias ~/.alias
+ln -nfs $PWD/.zprofile ~/.zprofile
 
 PATH_TO_APPEND=$(echo $PATH | cut -d':' -f 1)
 PATH_TO_READ=$PWD/path

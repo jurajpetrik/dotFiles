@@ -59,6 +59,14 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 source $ZSH/oh-my-zsh.sh
 # source aliases
 source ~/.alias
+
+eval $(thefuck --alias)
+
+#this is necessary for i3-nagbar. It executes its commands in i3-sensible-terminal. i3-sensible-terminal runs either the command set in $TERMINAL or falls back to some default terminals. 
+export TERMINAL='termite'
+export GIT_EDITOR='nvim'
+export EDITOR='nvim'
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
