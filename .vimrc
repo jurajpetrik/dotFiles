@@ -142,6 +142,12 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = "\<Space>"
 
+command! EditTmux e ~/.tmux.conf
+command! EditZsh e ~/.zshrc
+command! EditVim e ~/.config/nvim/init.vim
+command! EditGitConfig e ~/.gitconfig
+command! EditGitIgnore e ~/.gitignore
+
 " delete from cursor position to end of line
 inoremap <C-d> <Esc>lDa
 
