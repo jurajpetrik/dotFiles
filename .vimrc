@@ -2,13 +2,11 @@
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
-Plug 'scwood/vim-hybrid' " colorscheme
 Plug 'scrooloose/syntastic' " linting
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'tpope/vim-commentary' " add motion for commenting
 Plug 'heavenshell/vim-jsdoc' " jsdoc generator
 Plug 'pangloss/vim-javascript', { 'for': 'javasript' } " better js syntax highlighting
-Plug 'vim-airline/vim-airline' " status bar
 Plug 'craigemery/vim-autotag' " generate ctags on file save
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
 Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can agree on
@@ -17,7 +15,14 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'tpope/vim-fugitive' " git wrapper
 Plug 'craigemery/vim-autotag'
+Plug 'scwood/vim-hybrid' " colorscheme
+Plug 'morhetz/gruvbox' " colorscheme
+" airline plugins
+Plug 'vim-airline/vim-airline' " status bar
+Plug 'vim-airline/vim-airline-themes' 
 Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. Is this magic?
+" /airline plugins
+
 call plug#end()
 
 let g:tmuxline_preset = {
@@ -61,6 +66,11 @@ let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
 let g:airline_powerline_fonts = 1
 set noshowmode
 " -------------------------- PLUGINS  -------------------------------
+set termguicolors
+
+" color scheme 
+colorscheme gruvbox
+set background=dark
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -219,11 +229,6 @@ nnoremap <c-p> :CtrlPMixed<CR>
 
 " s to surround
 nnoremap s <Plug>Ysurround
-
-" ------------------------ COLOR SCHEME ---------------------------
-colorscheme hybrid
-set background=dark
-" ------------------------ COLOR SCHEME ---------------------------
 
 "Remember last cursor position between file closes
 if has("autocmd")
