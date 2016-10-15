@@ -4,5 +4,6 @@
 !.vim/autoload/plug.vim
 .tmux
 !.tmux/plugings/tpm
+!.tmux/tmuxline
 .DS_Store
 

@@ -29,7 +29,11 @@ let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : '#I #W',
       \'cwin' : '#I #W',
-      \'y'    : '%R'}
+      \'y'    : '#S'}
+
+
+let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_theme = 'jellybeans'
 
 "tmux + vim seamless navigation with Alt+<hjkl>
 let g:tmux_navigator_no_mappings = 1
@@ -138,6 +142,9 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = "\<Space>"
 
+" delete from cursor position to end of line
+inoremap <C-d> <Esc>lDa
+
 nnoremap gs :Gstatus<CR>
 
 nnoremap K a<CR><Esc>
@@ -155,7 +162,7 @@ nnoremap <Leader>er <Esc>:vsplit $MYVIMRC<CR>
 nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
 
 "move line up
-nnoremap - ddkP==
+" nnoremap - ddkP==
 "move line down
 nnoremap _ ddp==
 
