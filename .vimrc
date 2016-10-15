@@ -1,4 +1,3 @@
-source ~/.vim/custom/folds.vim
 " -------------------------- PLUGINS  -------------------------------
 
 call plug#begin('~/.vim/plugged')
@@ -18,7 +17,14 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'tpope/vim-fugitive' " git wrapper
 Plug 'craigemery/vim-autotag'
+Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. Is this magic?
 call plug#end()
+
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'y'    : '%R'}
 
 "tmux + vim seamless navigation with Alt+<hjkl>
 let g:tmux_navigator_no_mappings = 1
