@@ -190,6 +190,8 @@
 	<integer>116</integer>
 	<key>HotkeyCode</key>
 	<integer>17</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>524576</integer>
 	<key>IRMemory</key>
@@ -204,8 +206,10 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NSFontPanelAttributes</key>
+	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/src</string>
+	<string>~/src/dotfiles</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -229,7 +233,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>307</string>
+		<string>322</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -247,15 +251,15 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>831 535 445 108 0 0 1280 777 </string>
+	<string>500 438 445 94 0 0 1280 800 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>1318 396 924 485 1280 -347 1080 1920 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1368 289 796 473 1280 -347 1080 1920 </string>
+	<string>150 232 796 473 0 0 1280 800 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>2514 506 592 584 2360 -87 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1280 -347 1075 1897 1280 -347 1080 1897 </string>
+	<string>538 337 570 377 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 344 570 452 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -803,7 +807,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>DroidSansMonoDottedForPowerline 12</string>
+			<string>FantasqueSansMono-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1060,11 +1064,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml?shard=39</string>
+	<string>https://iterm2.com/appcasts/nightly.xml?shard=39</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-10-05T10:48:32Z</date>
+	<date>2016-10-15T17:36:16Z</date>
 	<key>SUSkippedVersion</key>
 	<string>3.0.5</string>
 	<key>SavePasteHistory</key>
@@ -1114,6 +1118,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.7</string>
+	<string>3.0.20161002-nightly</string>
 </dict>
 </plist>
