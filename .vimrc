@@ -22,7 +22,7 @@ Plug 'vim-airline/vim-airline' " status bar
 Plug 'vim-airline/vim-airline-themes' 
 Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. Is this magic?
 " /airline plugins
-
+Plug 'lilydjwg/colorizer' " color html color codes
 call plug#end()
 
 let g:tmuxline_preset = {
@@ -161,6 +161,11 @@ nnoremap <silent> <Leader>t :vsplit<CR>:terminal<CR>
 :tnoremap <A-j> <C-\><C-n><C-w>j
 :tnoremap <A-k> <C-\><C-n><C-w>k
 :tnoremap <A-l> <C-\><C-n><C-w>l
+
+nnoremap <A-H> <C-W>H
+nnoremap <A-J> <C-W>J
+nnoremap <A-K> <C-W>K
+nnoremap <A-L> <C-W>L
 
 " edit this file in a split
 nnoremap <Leader>er <Esc>:vsplit $MYVIMRC<CR>
