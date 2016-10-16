@@ -3,10 +3,14 @@
 #make sudo expand aliases http://unix.stackexchange.com/a/148548
 alias sudo='sudo '
 
+alias mux='tmuxinator'
+
 # alias to source zshrc
 alias sz='source ~/.zshrc'
 alias reload='source ~/.zshrc'
+
 # convenience aliases for editing configs
+alias vimrc='nvim ~/.vimrc'
 alias ev='nvim ~/.vimrc'
 alias et='nvim ~/.tmux.conf'
 alias ez='nvim ~/.zshrc'
@@ -41,4 +45,3 @@ moon() { curl http://wttr.in/Moon@$@; }
 
 # make a directory and cd to it with one command
 mkcd() { mkdir $1; cd $1; }
-

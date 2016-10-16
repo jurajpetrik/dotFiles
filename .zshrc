@@ -56,6 +56,9 @@ ZSH_THEME="robbyrussell"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# useful for tmuxinator
+export DISABLE_AUTO_TITLE=true
+
 source $ZSH/oh-my-zsh.sh
 # source aliases
 source ~/.alias
