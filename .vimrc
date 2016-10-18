@@ -22,8 +22,16 @@ Plug 'vim-airline/vim-airline' " status bar
 Plug 'vim-airline/vim-airline-themes' 
 Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. Is this magic?
 " /airline plugins
+
 Plug 'lilydjwg/colorizer' " color html color codes
+" Plug 'janko-m/vim-test' " test suite runner
 call plug#end()
+
+source ~/.vim/custom/folds.vim
+
+" let test#strategy = "basic" " run tests in neovim :terminal buffer
+" let test#javascript#runner = 'mocha'
+" let test#javascript#mocha#executable = 'NODE_ENV=localTest mocha --recursive test/bootstrap.test.js'
 
 let g:tmuxline_preset = {
       \'a'    : '#S',
@@ -43,9 +51,16 @@ nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
+vnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+vnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+vnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+vnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+vnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 
 " use deoplete
 let g:deoplete#enable_at_startup = 1
+" Path completion from buffer directory not pwd
+let g:deoplete#file#enable_buffer_path = 1 
 " automatically close preview window of deoplete once chose sth
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -64,6 +79,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+let g:syntastic_loc_list_height = 5
 let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
 
 " Settings for Syntastic
@@ -142,6 +158,13 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = "\<Space>"
 
+" backtick is taken by tmux
+nnoremap '' ``
+
+" indent after pasting!
+nnoremap p p=`]
+nnoremap P P=`]
+
 command! EditTmux e ~/.tmux.conf
 command! EditZsh e ~/.zshrc
 command! EditVim e ~/.config/nvim/init.vim
@@ -202,7 +225,7 @@ nnoremap <Leader>o o<Esc>k
 nnoremap <Leader>O O<Esc>j
 
 " ctrl-s to write file
-nnoremap S :w<CR>
+nnoremap <C-s> :w<CR>
 
 " Leader + Escape, clear search highlighting
 nnoremap <silent> <Leader><Esc> :noh<CR>
@@ -210,9 +233,11 @@ vnoremap <silent> <Leader><Esc> :noh<CR>
 
 " Leader + v, open vertical split
 nnoremap <Leader>v :vnew<CR>
-" Leader + s, open horizontal split
-nnoremap <Leader>b :new<CR>
+nnoremap <Leader>. :vnew<CR>
 
+" Leader + b, open horizontal split
+nnoremap <Leader>b :new<CR>
+nnoremap <Leader>, :vnew<CR>
 " commented cause fucks up: cd src/..
 " ca src source $MYVIMRC
 
