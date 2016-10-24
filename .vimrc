@@ -67,18 +67,27 @@ vnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 vnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 vnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 
-" use deoplete
+" DEOPLETE
 let g:deoplete#enable_at_startup = 1
 " Path completion from buffer directory not pwd
-let g:deoplete#file#enable_buffer_path = 1 
+let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.javascript = [
+      \ 'tern#Complete',
+      \ 'jspc#omni'
+ \]
+
 " automatically close preview window of deoplete once chose sth
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
+" /DEOPLETE
+
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 
 " Settings for Syntastic
 set statusline+=%#warningmsg#
