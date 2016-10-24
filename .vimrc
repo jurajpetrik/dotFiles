@@ -177,6 +177,9 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = "\<Space>"
 
+" Leader+enter 'full-screen' current split
+" TODO: when hit again, go back to original layout
+nnoremap <silent> <Leader><CR> :only<CR>
 " backtick is taken by tmux
 nnoremap '' ``
 
@@ -292,7 +295,27 @@ nnoremap <c-p> :CtrlPMixed<CR>
 " s to surround
 nnoremap s <Plug>Ysurround
 
+" AUTOCMDs 
+
 "Remember last cursor position between file closes
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+augroup cursor
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup END
+
+fun! TrimWhitespace()
+  " Don't strip files where trailing whitespace is significant. For now just
+  " markdown
+  if &ft =~ 'markdown'
+    return
+  endif
+  let l:save = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:save)
+endfun
+
+" trim trailing whitespace on filesave
+augroup trimWhitespace
+  autocmd!
+  autocmd BufWritePre * :call TrimWhitespace()
+augroup END
