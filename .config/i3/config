@@ -1,7 +1,7 @@
 # Modifier key is the "windows" key
 set $mod Mod4
 
-# terminal is termite 
+# terminal is termite
 set $term termite
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -17,7 +17,7 @@ bindsym $mod+Return exec $term
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# set color scheme 
+# set color scheme
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
@@ -35,7 +35,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 gaps inner 5
 gaps outer 10
 # start rufi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 3 -eh 3 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$rofi-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "$rofi-color" -font "System San Francisco Display 15" 
+bindsym $mod+d exec rofi -show run -lines 3 -eh 3 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$rofi-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "$rofi-color" -font "System San Francisco Display 15"
 
 # select random wallpaper
 bindsym $mod+w exec --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
@@ -122,7 +122,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        
+
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
@@ -182,8 +182,9 @@ exec --no-startup-id nm-applet
 
 #pick a random wallpaper
 exec_always --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
-exec_always --no-startup-id messengerfordesktop
-exec_always --no-startup-id slack
-#
-# go to $workspace 8, start terminal with weechat in it. set layout to stacking, go to $workspace1
-exec_always --no-startup-id i3-msg 'workspace $workspace8; exec $term -e weechat; layout stacking; workspace $workspace1'
+# exec_always --no-startup-id messengerfordesktop
+exec --no-startup-id slack
+exec --no-startup-id $term -e weechat
+
+# go to $workspace 8, set layout to stacking, go to $workspace1
+exec_always --no-startup-id i3-msg 'workspace $workspace8; layout stacking; workspace $workspace1'
