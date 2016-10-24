@@ -1,18 +1,28 @@
 " -------------------------- PLUGINS  -------------------------------
-
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
 Plug 'scrooloose/syntastic' " linting
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'tpope/vim-commentary' " add motion for commenting
-Plug 'heavenshell/vim-jsdoc' " jsdoc generator
-Plug 'pangloss/vim-javascript', { 'for': 'javasript' } " better js syntax highlighting
 Plug 'craigemery/vim-autotag' " generate ctags on file save
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
 Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can agree on
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " completion
+Plug 'ervandew/supertab'
+
+" JS plugins
+Plug 'heavenshell/vim-jsdoc' , { 'for': ['javascript', 'javascript.jsx']} " jsdoc generator
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']} " better js syntax highlighting
+
+Plug 'sheerun/vim-json' " JSON syntax
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 Plug 'tpope/vim-fugitive' " git wrapper
 Plug 'craigemery/vim-autotag'
 Plug 'scwood/vim-hybrid' " colorscheme
