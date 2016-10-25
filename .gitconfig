@@ -20,6 +20,8 @@
   pop = stash pop
   touched = "!f() { BASE_BRANCH=${1:-develop}; printf \"Files changed since branched out from $BASE_BRANCH:\n\n\"; git diff HEAD $(git merge-base HEAD  $BASE_BRANCH) --name-only; }; f"
   root = rev-parse --show-toplevel
+  ps = push
+  pl = pull
 [user]
   email = jpe@coinify.com
   name = Juraj Petrik
