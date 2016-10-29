@@ -1,5 +1,3 @@
-" display fold level column
-set foldcolumn=1
 setlocal foldmethod=indent
 setlocal foldignore=
 
@@ -8,6 +6,7 @@ set foldopen-=block
 
 nnoremap <silent> <leader>zj :call NextClosedFold('j')<cr>
 nnoremap <silent> <leader>zk :call NextClosedFold('k')<cr>
+
 function! NextClosedFold(dir)
     let cmd = 'norm!z' . a:dir
     let view = winsaveview()
