@@ -10,14 +10,13 @@ Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " completion
-Plug 'ervandew/supertab'
 
 " JS plugins
 Plug 'heavenshell/vim-jsdoc' , { 'for': ['javascript', 'javascript.jsx']} " jsdoc generator
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']} " better js syntax highlighting
 
 Plug 'sheerun/vim-json' " JSON syntax
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern',  'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 Plug 'SirVer/ultisnips'
@@ -29,7 +28,7 @@ Plug 'scwood/vim-hybrid' " colorscheme
 Plug 'morhetz/gruvbox' " colorscheme
 " airline plugins
 Plug 'vim-airline/vim-airline' " status bar
-Plug 'vim-airline/vim-airline-themes' 
+Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. Is this magic?
 " /airline plugins
 
@@ -38,6 +37,7 @@ Plug 'lilydjwg/colorizer' " color html color codes
 call plug#end()
 
 source ~/.vim/custom/folds.vim
+source ~/.vim/custom/deoplete-settings.vim
 
 " let test#strategy = "basic" " run tests in neovim :terminal buffer
 " let test#javascript#runner = 'mocha'
@@ -67,23 +67,6 @@ vnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 vnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 vnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 
-" DEOPLETE
-let g:deoplete#enable_at_startup = 1
-" Path completion from buffer directory not pwd
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-      \ 'tern#Complete',
-      \ 'jspc#omni'
- \]
-
-" automatically close preview window of deoplete once chose sth
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" /DEOPLETE
 
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -107,7 +90,7 @@ set noshowmode
 " -------------------------- PLUGINS  -------------------------------
 set termguicolors
 
-" color scheme 
+" color scheme
 colorscheme gruvbox
 set background=dark
 
@@ -132,7 +115,7 @@ set ignorecase
 set hlsearch
 
 " don't redraw when executing macros
-set nolazyredraw 
+set nolazyredraw
 
 " delete spaces 2 at a time in insert mode.
 set softtabstop=2
@@ -198,7 +181,7 @@ inoremap <C-d> <Esc>lDa
 
 nnoremap gs :Gstatus<CR>
 
-nnoremap K a<CR><Esc>
+nnoremap K i<CR><Up><Esc>$
 nnoremap <silent> <Leader>t :vsplit<CR>:terminal<CR>
 
 :tnoremap <Esc> <C-\><C-n>
@@ -220,8 +203,9 @@ nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
 "move line up
 " nnoremap - ddkP==
 "move line down
-nnoremap _ ddp==
+" nnoremap _ ddp==
 
+nnoremap <Leader>s :SyntasticToggle<CR>
 " get rid of that pesky typo
 nnoremap q: :q
 
@@ -277,7 +261,7 @@ inoremap "  ""<Left>
 inoremap '  ''<Left>
 inoremap [  []<Left>
 
-" in insert mode, write moduleName ,then Ctrl + e(xpand) 
+" in insert mode, write moduleName ,then Ctrl + e(xpand)
 " =>  const moduleName = require('moduleName');
 inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
 
@@ -295,7 +279,7 @@ nnoremap <c-p> :CtrlPMixed<CR>
 " s to surround
 nnoremap s <Plug>Ysurround
 
-" AUTOCMDs 
+" AUTOCMDs
 
 "Remember last cursor position between file closes
 augroup cursor
