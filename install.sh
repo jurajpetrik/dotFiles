@@ -29,6 +29,8 @@ ln -nfs $PWD/.alias ~/.alias
 ln -nfs $PWD/.zprofile ~/.zprofile
 ln -nfs $PWD/.zlogin ~/.zlogin
 
+ln -nfs $PWD/.tmuxinator ~/.tmuxinator
+
 PATH_TO_APPEND=$(echo $PATH | cut -d':' -f 1)
 PATH_TO_READ=$PWD/path
 FILES=$(ls $PATH_TO_READ)
