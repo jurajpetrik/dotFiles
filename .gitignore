@@ -6,4 +6,4 @@
 !.tmux/plugings/tpm
 !.tmux/tmuxline
 .DS_Store
-
+npm-debug.log
