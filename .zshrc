@@ -77,7 +77,6 @@ then
   DOCKER_MACHINE="default"
   if docker-machine status $DOCKER_MACHINE | grep "Running" &> /dev/null
   then
-    echo "evaling docker-machine"
     eval "$(docker-machine env $DOCKER_MACHINE)"
   else
     echo "starting docker-machine"

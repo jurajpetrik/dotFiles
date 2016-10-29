@@ -26,8 +26,13 @@ alias up="cd .."
 # If you pipe colored output to less, keep the colors
 alias less="less -r"
 alias pls=fuck
-alias dotfiles="cd ~/src/dotfiles"
-alias dockerup='docker-machine start default;docker-machine env default;eval $(docker-machine env default)'
+alias dotfiles="tmuxinator start dotfiles"
+
+alias service="tmuxinator start service"
+alias serv="tmuxinator start service"
+alias s="tmuxinator start service"
+# alias dockerup='docker-machine start default;docker-machine env default;eval $(docker-machine env default)'
+
 alias -- -='cd -'
 
 #functions
