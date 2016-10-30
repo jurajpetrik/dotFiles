@@ -1,12 +1,10 @@
 " -------------------------- PLUGINS  -------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
-Plug 'scrooloose/syntastic' " linting
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'tpope/vim-commentary' " add motion for commenting
 Plug 'craigemery/vim-autotag' " generate ctags on file save
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
-Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can agree on
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " completion
@@ -26,6 +24,7 @@ Plug 'tpope/vim-fugitive' " git wrapper
 Plug 'craigemery/vim-autotag'
 Plug 'scwood/vim-hybrid' " colorscheme
 Plug 'morhetz/gruvbox' " colorscheme
+
 " airline plugins
 Plug 'vim-airline/vim-airline' " status bar
 Plug 'vim-airline/vim-airline-themes'
@@ -34,10 +33,15 @@ Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. 
 
 Plug 'lilydjwg/colorizer' " color html color codes
 " Plug 'janko-m/vim-test' " test suite runner
+Plug 'neomake/neomake' " linter
+Plug 'milkypostman/vim-togglelist' "Function to toggle location/quickfix list
+Plug 'majutsushi/tagbar'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 source ~/.vim/custom/folds.vim
 source ~/.vim/custom/deoplete-settings.vim
+source ~/.vim/custom/neomake-settings.vim
 
 " let test#strategy = "basic" " run tests in neovim :terminal buffer
 " let test#javascript#runner = 'mocha'
@@ -71,20 +75,6 @@ vnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-
-" Settings for Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
-
-" Settings for Syntastic
 let g:airline_powerline_fonts = 1
 set noshowmode
 " -------------------------- PLUGINS  -------------------------------
@@ -157,16 +147,18 @@ set backupdir=~/.vim/backupdir
 set directory=~/.vim/directory
 
 " ---------------------- CUSTOM KEYBINDING --------------------------
+
 " set Leader key to spacebar
-let mapleader = "\<Space>"
+let mapleader = " "
+" and get rid of fucking useless 'hold space to move cursor left'
+nnoremap <Space> <nop>
+vnoremap <Space> <nop>
 
 " Leader+enter 'full-screen' current split
 " TODO: when hit again, go back to original layout
 nnoremap <silent> <Leader><CR> :only<CR>
-" backtick is taken by tmux
-nnoremap '' ``
 
-" indent after pasting!
+" indent after pasting! TODO: fix for pasting less than full line
 nnoremap p p=`]
 nnoremap P P=`]
 
@@ -205,9 +197,8 @@ nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
 "move line down
 " nnoremap _ ddp==
 
-nnoremap <Leader>s :SyntasticToggle<CR>
 " get rid of that pesky typo
-nnoremap q: :q
+nnoremap q: <nop>
 
 nnoremap ; :
 vnoremap ; :
@@ -220,9 +211,6 @@ vnoremap // y/<C-R>" <CR>
 
 " make Y yank to the end of line, consistent with C,D (change, delete)
 nnoremap Y y$
-" make V and vv work analagous to C,cc ; D, dd;
-nnoremap V v$
-nnoremap vv V
 
 " Ctrl + o insert new line below, stay in normal mode
 nnoremap <Leader>o o<Esc>k
@@ -247,20 +235,6 @@ nnoremap <Leader>, :vnew<CR>
 " commented cause fucks up: cd src/..
 " ca src source $MYVIMRC
 
-" go to previous, next location bindings. (useful for syntastic plugin, jump
-" to the next/prev error)
-nnoremap <Leader>n :lnext<CR>
-nnoremap <Leader>N :lprev<CR>
-
-" last open buffer
-nnoremap <Leader>l :b#<CR>
-
-inoremap (  ()<Left>
-inoremap {  {}<Left>
-inoremap "  ""<Left>
-inoremap '  ''<Left>
-inoremap [  []<Left>
-
 " in insert mode, write moduleName ,then Ctrl + e(xpand)
 " =>  const moduleName = require('moduleName');
 inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
@@ -269,7 +243,7 @@ inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
 nnoremap gb :CtrlPBuffer<CR>
 nnoremap gf :CtrlP<CR>
 nnoremap gr :CtrlPMRU<CR>
-nnoremap gt :CtrlPTag<CR>
+" nnoremap gt :CtrlPTag<CR>
 
 " last open buffer
 nnoremap gl :b#<CR>
@@ -302,4 +276,13 @@ endfun
 augroup trimWhitespace
   autocmd!
   autocmd BufWritePre * :call TrimWhitespace()
+augroup END
+
+augroup bracketsAutocompletetion
+  autocmd!
+  autocmd filetype js,vim inoremap (  ()<Left>
+  autocmd filetype js,vim inoremap {  {}<Left>
+  autocmd filetype js,vim inoremap "  ""<Left>
+  autocmd filetype js,vim inoremap '  ''<Left>
+  autocmd filetype js,vim inoremap [  []<Left>
 augroup END
