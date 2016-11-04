@@ -154,6 +154,7 @@ let mapleader = " "
 nnoremap <Space> <nop>
 vnoremap <Space> <nop>
 
+nnoremap <c-t> :TagbarToggle<CR>
 " Leader+enter 'full-screen' current split
 " TODO: when hit again, go back to original layout
 nnoremap <silent> <Leader><CR> :only<CR>
