@@ -1,6 +1,6 @@
 " -------------------------- PLUGINS  -------------------------------
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
+Plug 'jurajpetrik/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'tpope/vim-commentary' " add motion for commenting
 Plug 'craigemery/vim-autotag' " generate ctags on file save
@@ -47,6 +47,9 @@ source ~/.vim/custom/neomake-settings.vim
 " let test#javascript#runner = 'mocha'
 " let test#javascript#mocha#executable = 'NODE_ENV=localTest mocha --recursive test/bootstrap.test.js'
 
+" Enable jsdoc syntax highlighting, courtesy of pangloss/vim-javascript plugin
+let g:javascript_plugin_jsdoc = 1
+
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'win'  : '#I #W',
@@ -65,17 +68,12 @@ nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
-vnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
-vnoremap <silent> <A-j> :TmuxNavigateDown<cr>
-vnoremap <silent> <A-k> :TmuxNavigateUp<cr>
-vnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-vnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
-
 
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 let g:airline_powerline_fonts = 1
+
 set noshowmode
 " -------------------------- PLUGINS  -------------------------------
 set termguicolors
@@ -154,6 +152,9 @@ let mapleader = " "
 nnoremap <Space> <nop>
 vnoremap <Space> <nop>
 
+nnoremap <CR> <nop>
+vnoremap <CR> <nop>
+
 nnoremap <c-t> :TagbarToggle<CR>
 " Leader+enter 'full-screen' current split
 " TODO: when hit again, go back to original layout
@@ -168,6 +169,8 @@ command! EditZsh e ~/.zshrc
 command! EditVim e ~/.config/nvim/init.vim
 command! EditGitConfig e ~/.gitconfig
 command! EditGitIgnore e ~/.gitignore
+
+command! JsonFormat %!python -m json.tool
 
 " delete from cursor position to end of line
 inoremap <C-d> <Esc>lDa
@@ -189,7 +192,7 @@ nnoremap <A-K> <C-W>K
 nnoremap <A-L> <C-W>L
 
 " edit this file in a split
-nnoremap <Leader>er <Esc>:vsplit $MYVIMRC<CR>
+nnoremap <Leader>er :vsplit $MYVIMRC<CR>
 " source vimrc
 nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
 
@@ -199,13 +202,13 @@ nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
 " nnoremap _ ddp==
 
 " get rid of that pesky typo
-nnoremap q: <nop>
+" nnoremap q: <nop>
 
-nnoremap ; :
-vnoremap ; :
+nnoremap , :
+vnoremap , :
 
-nnoremap : ;
-vnoremap : ;
+nnoremap : ,
+vnoremap : ,
 
 " double slash to search for visually selected text
 vnoremap // y/<C-R>" <CR>
@@ -252,7 +255,10 @@ nnoremap gl :b#<CR>
 nnoremap <c-p> :CtrlPMixed<CR>
 
 " s to surround
-nnoremap s <Plug>Ysurround
+nmap s  <Plug>Ysurround
+nmap ss <Plug>Yssurround
+nmap S  <Plug>YSurround
+nmap SS <Plug>YSSurround
 
 " AUTOCMDs
 
@@ -281,9 +287,10 @@ augroup END
 
 augroup bracketsAutocompletetion
   autocmd!
-  autocmd filetype js,vim inoremap (  ()<Left>
-  autocmd filetype js,vim inoremap {  {}<Left>
-  autocmd filetype js,vim inoremap "  ""<Left>
-  autocmd filetype js,vim inoremap '  ''<Left>
-  autocmd filetype js,vim inoremap [  []<Left>
+  autocmd filetype javascript,vim inoremap (  ()<Left>
+  autocmd filetype javascript,vim inoremap {  {}<Left>
+  autocmd filetype javascript,vim inoremap "  ""<Left>
+  autocmd filetype javascript,vim inoremap '  ''<Left>
+  autocmd filetype javascript,vim inoremap [  []<Left>
+
 augroup END
