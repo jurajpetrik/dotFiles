@@ -33,7 +33,7 @@ Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. 
 
 Plug 'lilydjwg/colorizer' " color html color codes
 " Plug 'janko-m/vim-test' " test suite runner
-Plug 'neomake/neomake' " linter
+Plug 'neomake/neomake', { 'on': ['Neomake'] } " linter
 Plug 'milkypostman/vim-togglelist' "Function to toggle location/quickfix list
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
@@ -43,6 +43,8 @@ source ~/.vim/custom/folds.vim
 source ~/.vim/custom/deoplete-settings.vim
 source ~/.vim/custom/neomake-settings.vim
 
+" close vim if last open window is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " let test#strategy = "basic" " run tests in neovim :terminal buffer
 " let test#javascript#runner = 'mocha'
 " let test#javascript#mocha#executable = 'NODE_ENV=localTest mocha --recursive test/bootstrap.test.js'
@@ -148,6 +150,29 @@ set directory=~/.vim/directory
 
 " set Leader key to spacebar
 let mapleader = " "
+
+" When jump to next match also center screen
+nnoremap n nzz
+nnoremap N Nzz
+vnoremap n nzz
+vnoremap N Nzz
+
+" Same when moving up and down
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
+vnoremap <C-u> <C-u>zz
+vnoremap <C-d> <C-d>zz
+vnoremap <C-f> <C-f>zz
+vnoremap <C-b> <C-b>zz
+
+" And when cycling through movement history
+nnoremap <C-o> <C-o>zz
+vnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-o>zz
+vnoremap <C-i> <C-o>zz
+
 " and get rid of fucking useless 'hold space to move cursor left'
 nnoremap <Space> <nop>
 vnoremap <Space> <nop>
@@ -156,6 +181,7 @@ nnoremap <CR> <nop>
 vnoremap <CR> <nop>
 
 nnoremap <c-t> :TagbarToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 " Leader+enter 'full-screen' current split
 " TODO: when hit again, go back to original layout
 nnoremap <silent> <Leader><CR> :only<CR>
@@ -289,7 +315,7 @@ augroup bracketsAutocompletetion
   autocmd!
   autocmd filetype javascript,vim inoremap (  ()<Left>
   autocmd filetype javascript,vim inoremap {  {}<Left>
-  autocmd filetype javascript,vim inoremap "  ""<Left>
+  autocmd filetype javascript inoremap "  ""<Left>
   autocmd filetype javascript,vim inoremap '  ''<Left>
   autocmd filetype javascript,vim inoremap [  []<Left>
 

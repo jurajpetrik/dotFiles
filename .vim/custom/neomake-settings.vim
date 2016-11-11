@@ -4,7 +4,7 @@ autocmd BufEnter,InsertChange,TextChanged * Neomake
 
 " open/close location list (populated with linter errors)
 nnoremap <script> <silent> <c-l> :call ToggleLocationList()<CR>
-nnoremap <script> <silent> <c-c> :call ToggleQuickfixList()<CR>
+nnoremap <script> <silent> <c-q> :call ToggleQuickfixList()<CR>
 
 " go to current error/warning
 nnoremap <Leader>l :lfirst<CR>
