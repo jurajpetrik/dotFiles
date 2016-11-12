@@ -1,4 +1,4 @@
-" -------------------------- PLUGINS  -------------------------------
+" -------------------------  PLUGINS  -------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'jurajpetrik/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
@@ -7,7 +7,7 @@ Plug 'craigemery/vim-autotag' " generate ctags on file save
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " completion
+Plug 'Shougo/doplete.nvim', { 'do': ':UpdateRemotePlugins' } " completion
 
 " JS plugins
 Plug 'heavenshell/vim-jsdoc' , { 'for': ['javascript', 'javascript.jsx']} " jsdoc generator
@@ -37,11 +37,13 @@ Plug 'neomake/neomake', { 'on': ['Neomake'] } " linter
 Plug 'milkypostman/vim-togglelist' "Function to toggle location/quickfix list
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 source ~/.vim/custom/folds.vim
 source ~/.vim/custom/deoplete-settings.vim
 source ~/.vim/custom/neomake-settings.vim
+source ~/.vim/custom/mdn-docs.vim
 
 " close vim if last open window is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -146,7 +148,7 @@ set undodir=~/.vim/undodir
 set backupdir=~/.vim/backupdir
 set directory=~/.vim/directory
 
-" ---------------------- CUSTOM KEYBINDING --------------------------
+" ---------------------- MAPPINGS --------------------------
 
 " set Leader key to spacebar
 let mapleader = " "
@@ -156,6 +158,10 @@ nnoremap n nzz
 nnoremap N Nzz
 vnoremap n nzz
 vnoremap N Nzz
+
+" and when jumping to a tag
+nnoremap <c-]> <c-]>zz
+vnoremap <c-]> <c-]>zz
 
 " Same when moving up and down
 nnoremap <C-u> <C-u>zz
@@ -182,9 +188,9 @@ vnoremap <CR> <nop>
 
 nnoremap <c-t> :TagbarToggle<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
+
 " Leader+enter 'full-screen' current split
-" TODO: when hit again, go back to original layout
-nnoremap <silent> <Leader><CR> :only<CR>
+nnoremap <silent> <Leader><CR> <c-w>T
 
 " indent after pasting! TODO: fix for pasting less than full line
 nnoremap p p=`]
@@ -218,9 +224,10 @@ nnoremap <A-K> <C-W>K
 nnoremap <A-L> <C-W>L
 
 " edit this file in a split
-nnoremap <Leader>er :vsplit $MYVIMRC<CR>
+nnoremap <silent> <Leader>er :call OpenSmartSplit($MYVIMRC)<cr>
 " source vimrc
-nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
+nnoremap <Leader>r :source $MYVIMRC<CR> :echom "Sourced config file"<CR>
+nnoremap <c-r> :source $MYVIMRC<CR> :echom "Sourced config file"<CR>
 
 "move line up
 " nnoremap - ddkP==
@@ -236,6 +243,10 @@ vnoremap , :
 nnoremap : ,
 vnoremap : ,
 
+" same think for moving through change list: last edit location
+nnoremap g: g,
+vnoremap g: g,
+
 " double slash to search for visually selected text
 vnoremap // y/<C-R>" <CR>
 
@@ -248,22 +259,24 @@ nnoremap <Leader>o o<Esc>k
 " Ctrl + O insert new line above, stay in normal mode
 nnoremap <Leader>O O<Esc>j
 
-" ctrl-s to write file
+" ctrl-s to write buffer
 nnoremap <C-s> :w<CR>
+" ctrl-c to close buffer
+nnoremap <C-c> :q<CR>
 
 " Leader + Escape, clear search highlighting
 nnoremap <silent> <Leader><Esc> :noh<CR>
 vnoremap <silent> <Leader><Esc> :noh<CR>
-
-" Leader + v, open vertical split
-nnoremap <Leader>v :vnew<CR>
-nnoremap <Leader>. :vnew<CR>
-
-" Leader + b, open horizontal split
-nnoremap <Leader>b :new<CR>
-nnoremap <Leader>, :vnew<CR>
-" commented cause fucks up: cd src/..
-" ca src source $MYVIMRC
+"
+nnoremap <silent> <Leader>s :call OpenSmartSplit()<CR>
+"
+" " Leader + v, open vertical split
+" " nnoremap <Leader>v :vnew<CR>
+" " nnoremap <Leader>. :vnew<CR>
+"
+" " Leader + b, open horizontal split
+" nnoremap <Leader>b :new<CR>
+" nnoremap <Leader>, :vnew<CR>
 
 " in insert mode, write moduleName ,then Ctrl + e(xpand)
 " =>  const moduleName = require('moduleName');
@@ -286,8 +299,40 @@ nmap ss <Plug>Yssurround
 nmap S  <Plug>YSurround
 nmap SS <Plug>YSSurround
 
-" AUTOCMDs
+" ================ FUNCTIONs =======================
+"
+" returns the if active window's width is bigger than its height
+function! IsActiveWindowLandscape()
+  : let l:width = str2float(winwidth(0))
+  : let l:height = str2float(winheight(0))
+  : let l:ratio = l:width / l:height
 
+  : if l:ratio > 2.3 " this threshold ratio was chosen by trying which dimensions I wanted to open vertical/horizontal split
+  :   return 1
+  : endif
+endfunction
+
+" open vertical/horizontal split depending on window dimensionions
+" if passed file name then open that in the split, else empty split
+function! OpenSmartSplit(...)
+:  if IsActiveWindowLandscape()
+:    if !a:0
+:      vnew
+:    else
+:      execute 'vsplit ' . a:1
+:    endif
+:   else
+:    if !a:0
+:      new
+:    else
+:      execute 'split ' . a:1
+:    endif
+:  endif
+endfunction
+
+" ================ / FUNCTIONs =======================
+
+" ================ AUTOCMDs =======================
 "Remember last cursor position between file closes
 augroup cursor
   autocmd!
@@ -313,10 +358,11 @@ augroup END
 
 augroup bracketsAutocompletetion
   autocmd!
-  autocmd filetype javascript,vim inoremap (  ()<Left>
-  autocmd filetype javascript,vim inoremap {  {}<Left>
-  autocmd filetype javascript inoremap "  ""<Left>
-  autocmd filetype javascript,vim inoremap '  ''<Left>
-  autocmd filetype javascript,vim inoremap [  []<Left>
+  autocmd filetype javascript,vim inoremap ( ()<Left>
+  autocmd filetype javascript,vim inoremap { {}<Left>
+  autocmd filetype javascript inoremap " ""<Left>
+  autocmd filetype javascript,vim inoremap ' ''<Left>
+  autocmd filetype javascript,vim inoremap [ []<Left>
 
 augroup END
+" ============== /AUTOCMDs =============
