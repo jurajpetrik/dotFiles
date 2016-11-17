@@ -7,7 +7,7 @@ Plug 'craigemery/vim-autotag' " generate ctags on file save
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 
-Plug 'Shougo/doplete.nvim', { 'do': ':UpdateRemotePlugins' } " completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " completion
 
 " JS plugins
 Plug 'heavenshell/vim-jsdoc' , { 'for': ['javascript', 'javascript.jsx']} " jsdoc generator
@@ -37,7 +37,10 @@ Plug 'neomake/neomake', { 'on': ['Neomake'] } " linter
 Plug 'milkypostman/vim-togglelist' "Function to toggle location/quickfix list
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'wellle/targets.vim'
+" Codi interactive REPL like editing
+Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 call plug#end()
 
 source ~/.vim/custom/folds.vim
@@ -90,6 +93,9 @@ set background=dark
 if has('mouse')
   set mouse=a
 endif
+
+" automatically read open file changes from third party
+set autoread
 
 " toggle invisible characters
 set list
@@ -153,6 +159,8 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = " "
 
+nnoremap g= mkgg=G`k
+vnoremap g= mkgg=G`k
 " When jump to next match also center screen
 nnoremap n nzz
 nnoremap N Nzz
@@ -210,13 +218,14 @@ inoremap <C-d> <Esc>lDa
 nnoremap gs :Gstatus<CR>
 
 nnoremap K i<CR><Up><Esc>$
-nnoremap <silent> <Leader>t :vsplit<CR>:terminal<CR>
+nnoremap <silent> <Leader>t :call OpenSmartSplit()<CR>:terminal<CR>
 
-:tnoremap <Esc> <C-\><C-n>
-:tnoremap <A-h> <C-\><C-n><C-w>h
-:tnoremap <A-j> <C-\><C-n><C-w>j
-:tnoremap <A-k> <C-\><C-n><C-w>k
-:tnoremap <A-l> <C-\><C-n><C-w>l
+tnoremap <c-d> <c-d><c-d>
+tnoremap <Esc> <C-\><C-n>
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
 
 nnoremap <A-H> <C-W>H
 nnoremap <A-J> <C-W>J
@@ -227,7 +236,6 @@ nnoremap <A-L> <C-W>L
 nnoremap <silent> <Leader>er :call OpenSmartSplit($MYVIMRC)<cr>
 " source vimrc
 nnoremap <Leader>r :source $MYVIMRC<CR> :echom "Sourced config file"<CR>
-nnoremap <c-r> :source $MYVIMRC<CR> :echom "Sourced config file"<CR>
 
 "move line up
 " nnoremap - ddkP==
@@ -278,9 +286,6 @@ nnoremap <silent> <Leader>s :call OpenSmartSplit()<CR>
 " nnoremap <Leader>b :new<CR>
 " nnoremap <Leader>, :vnew<CR>
 
-" in insert mode, write moduleName ,then Ctrl + e(xpand)
-" =>  const moduleName = require('moduleName');
-inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
 
 " choose buffer
 nnoremap gb :CtrlPBuffer<CR>
@@ -334,9 +339,13 @@ endfunction
 
 " ================ AUTOCMDs =======================
 "Remember last cursor position between file closes
-augroup cursor
+augroup misc
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  " auto term mode when entering terminal window
+  autocmd BufEnter term://* startinsert
+  " periodically read for file changes outside of vim
+  autocmd CursorHold,CursorHoldI * checktime
 augroup END
 
 fun! TrimWhitespace()
@@ -356,13 +365,17 @@ augroup trimWhitespace
   autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
-augroup bracketsAutocompletetion
+augroup filetypeSpecific
   autocmd!
+  " in insert mode, write moduleName ,then Ctrl + e(xpand) =>  const moduleName = require('moduleName');
+  autocmd filetype javascript inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
+  " autocmd filetype vim nnoremap <c-e> <Esc>A'<Esc>IPlug '<Esc>
+
+  " automatic braces insert
   autocmd filetype javascript,vim inoremap ( ()<Left>
   autocmd filetype javascript,vim inoremap { {}<Left>
   autocmd filetype javascript inoremap " ""<Left>
   autocmd filetype javascript,vim inoremap ' ''<Left>
   autocmd filetype javascript,vim inoremap [ []<Left>
-
 augroup END
 " ============== /AUTOCMDs =============
