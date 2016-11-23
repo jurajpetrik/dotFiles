@@ -31,10 +31,8 @@ alias dotfiles="tmuxinator start dotfiles"
 alias service="tmuxinator start service"
 alias serv="tmuxinator start service"
 alias s="tmuxinator start service"
-# alias dockerup='docker-machine start default;docker-machine env default;eval $(docker-machine env default)'
-
 alias -- -='cd -'
-
+alias nodeman=nodemon
 #functions
 groot(){ cd "$(git rev-parse --show-toplevel)"; }
 gr(){ cd "$(git rev-parse --show-toplevel)"; }
@@ -50,3 +48,15 @@ moon() { curl http://wttr.in/Moon@$@; }
 
 # make a directory and cd to it with one command
 mkcd() { mkdir $1; cd $1; }
+
+# Codi
+# Usage: codi [filetype] [filename]
+codi() {
+  local syntax="${1:-javascript}"
+    shift
+    nvim -c \
+    "set bt=nofile ls=0 noru nonu nornu |\
+    Codi $syntax" "$@"
+}
+
+flushDnsCache() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder }

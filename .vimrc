@@ -159,6 +159,10 @@ set directory=~/.vim/directory
 " set Leader key to spacebar
 let mapleader = " "
 
+" when searching for occurences of word under cursor, don't jump immediately
+nnoremap * *N
+nnoremap # #n
+
 nnoremap g= mkgg=G`k
 vnoremap g= mkgg=G`k
 " When jump to next match also center screen
@@ -182,10 +186,10 @@ vnoremap <C-f> <C-f>zz
 vnoremap <C-b> <C-b>zz
 
 " And when cycling through movement history
-nnoremap <C-o> <C-o>zz
-vnoremap <C-o> <C-o>zz
-nnoremap <C-i> <C-o>zz
-vnoremap <C-i> <C-o>zz
+" nnoremap <C-o> <C-o>zz
+" vnoremap <C-o> <C-o>zz
+" nnoremap <C-i> <C-o>zz
+" vnoremap <C-i> <C-o>zz
 
 " and get rid of fucking useless 'hold space to move cursor left'
 nnoremap <Space> <nop>
@@ -211,7 +215,8 @@ command! EditGitConfig e ~/.gitconfig
 command! EditGitIgnore e ~/.gitignore
 
 command! JsonFormat %!python -m json.tool
-
+command! Only :normal 0f(i.only
+command! OnlyNot :normal 0f.dt(
 " delete from cursor position to end of line
 inoremap <C-d> <Esc>lDa
 
@@ -277,15 +282,6 @@ nnoremap <silent> <Leader><Esc> :noh<CR>
 vnoremap <silent> <Leader><Esc> :noh<CR>
 "
 nnoremap <silent> <Leader>s :call OpenSmartSplit()<CR>
-"
-" " Leader + v, open vertical split
-" " nnoremap <Leader>v :vnew<CR>
-" " nnoremap <Leader>. :vnew<CR>
-"
-" " Leader + b, open horizontal split
-" nnoremap <Leader>b :new<CR>
-" nnoremap <Leader>, :vnew<CR>
-
 
 " choose buffer
 nnoremap gb :CtrlPBuffer<CR>
