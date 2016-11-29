@@ -161,7 +161,7 @@ let mapleader = " "
 
 " when searching for occurences of word under cursor, don't jump immediately
 nnoremap * *N
-nnoremap # #n
+nnoremap # #N
 
 nnoremap g= mkgg=G`k
 vnoremap g= mkgg=G`k
@@ -217,20 +217,21 @@ command! EditGitIgnore e ~/.gitignore
 command! JsonFormat %!python -m json.tool
 command! Only :normal 0f(i.only
 command! OnlyNot :normal 0f.dt(
-" delete from cursor position to end of line
-inoremap <C-d> <Esc>lDa
 
 nnoremap gs :Gstatus<CR>
 
 nnoremap K i<CR><Up><Esc>$
 nnoremap <silent> <Leader>t :call OpenSmartSplit()<CR>:terminal<CR>
 
-tnoremap <c-d> <c-d><c-d>
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
+tnoremap <A-H> <C-\><C-n><C-w>Hi
+tnoremap <A-J> <C-\><C-n><C-w>Ji
+tnoremap <A-K> <C-\><C-n><C-w>Ki
+tnoremap <A-L> <C-\><C-n><C-w>Li
 
 nnoremap <A-H> <C-W>H
 nnoremap <A-J> <C-W>J
