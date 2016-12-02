@@ -19,9 +19,11 @@
   amend = commit --amend --no-edit
   pop = stash pop
   touched = "!f() { BASE_BRANCH=${1:-develop}; printf \"Files changed since branched out from $BASE_BRANCH:\n\n\"; git diff HEAD $(git merge-base HEAD  $BASE_BRANCH) --name-only; }; f"
+  ibranch = "!f() { git checkout $(git branch | fzf); }; f"
   root = rev-parse --show-toplevel
   ps = push
   pl = pull
+  f = fetch
 [user]
   email = jpe@coinify.com
   name = Juraj Petrik
