@@ -335,16 +335,36 @@ function! OpenSmartSplit(...)
 :  endif
 endfunction
 
-function! PrependWhitespace(...)
-  if (matchstr(getline('.'), '\%' . col('.') . 'c.') ==? ' ')
-    exe "norm! a" . a:1
-  else
-    exe "norm! a " . a:1
-  endif
-  exe "startinsert!"
+function! GetCharacterAtCursorPosition()
+  return matchstr(getline('.'), '\%' . col('.') . 'c.')
 endfunction
-  "
-  " ================ / FUNCTIONs =======================
+
+function! IsCursorAtEndOfLine()
+  if(col('$') ==# 1)
+    return 1
+  else
+    return (col('$') - col('.')) ==# 1
+  endif
+endfunction
+
+function! PrependWhitespace(char)
+  if( GetCharacterAtCursorPosition() ==? ' ' || GetCharacterAtCursorPosition() ==? a:char )
+    exe "norm! a" . a:char
+  else
+    exe "norm! a " . a:char
+  endif
+
+  if IsCursorAtEndOfLine()
+    exe "startinsert!"
+  else
+    exe "norm l"
+    exe "startinsert"
+  endif
+
+endfunction
+
+
+" ================ / FUNCTIONs =======================
 
 " ================ AUTOCMDs =======================
 "Remember last cursor position between file closes
@@ -381,7 +401,6 @@ augroup filetypeSpecific
   " autocmd filetype vim nnoremap <c-e> <Esc>A'<Esc>IPlug '<Esc>
 
   " automatic braces insert
-
   autocmd filetype javascript,vim inoremap ( ()<Left>
   autocmd filetype javascript inoremap " ""<Left>
 
