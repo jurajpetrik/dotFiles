@@ -58,10 +58,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:javascript_plugin_jsdoc = 1
 
 let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W',
-      \'y'    : '#S'}
+  \'a'    : '#S',
+  \'win'  : '#I #W',
+  \'cwin' : '#I #W',
+  \'y'    : '#S'}
 
 
 let g:airline#extensions#tmuxline#enabled = 0
@@ -75,7 +75,8 @@ nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
-
+nnoremap <silent> <C-j> gT
+nnoremap <silent> <C-k> gt
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -286,7 +287,9 @@ nnoremap <silent> <Leader>s :call OpenSmartSplit()<CR>
 
 " choose buffer
 nnoremap gb :CtrlPBuffer<CR>
-nnoremap gf :CtrlP<CR>
+" gf is already mapped by vim to Go to file location under cursor, and that's
+" quite useful
+" nnoremap gf :CtrlP<CR>
 nnoremap gr :CtrlPMRU<CR>
 " nnoremap gt :CtrlPTag<CR>
 
@@ -332,7 +335,16 @@ function! OpenSmartSplit(...)
 :  endif
 endfunction
 
-" ================ / FUNCTIONs =======================
+function! PrependWhitespace(...)
+  if (matchstr(getline('.'), '\%' . col('.') . 'c.') ==? ' ')
+    exe "norm! a" . a:1
+  else
+    exe "norm! a " . a:1
+  endif
+  exe "startinsert!"
+endfunction
+  "
+  " ================ / FUNCTIONs =======================
 
 " ================ AUTOCMDs =======================
 "Remember last cursor position between file closes
@@ -369,10 +381,14 @@ augroup filetypeSpecific
   " autocmd filetype vim nnoremap <c-e> <Esc>A'<Esc>IPlug '<Esc>
 
   " automatic braces insert
+
   autocmd filetype javascript,vim inoremap ( ()<Left>
-  autocmd filetype javascript,vim inoremap { {}<Left>
   autocmd filetype javascript inoremap " ""<Left>
+
   autocmd filetype javascript,vim inoremap ' ''<Left>
   autocmd filetype javascript,vim inoremap [ []<Left>
+
+  autocmd FileType javascript inoremap = <C-]><ESC>:call PrependWhitespace("=")<CR>
+  autocmd FileType javascript inoremap { <C-]><ESC>:call PrependWhitespace("{")<CR>}<Left>
 augroup END
 " ============== /AUTOCMDs =============
