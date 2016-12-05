@@ -60,16 +60,29 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export DISABLE_AUTO_TITLE=true
 
 source $ZSH/oh-my-zsh.sh
+
 # source aliases
 source ~/.alias
 
 eval $(thefuck --alias)
 
-#this is necessary for i3-nagbar. It executes its commands in i3-sensible-terminal. i3-sensible-terminal runs either the command set in $TERMINAL or falls back to some default terminals. 
+#this is necessary for i3-nagbar. It executes its commands in i3-sensible-terminal. i3-sensible-terminal runs either the command set in $TERMINAL or falls back to some default terminals.
 export TERMINAL='termite'
 export GIT_EDITOR='nvim'
 export EDITOR='nvim'
 
+# handle docker machine shit in osx
+if [[ "$OSTYPE" == darwin* ]]
+then
+  DOCKER_MACHINE="default"
+  if docker-machine status $DOCKER_MACHINE | grep "Running" &> /dev/null
+  then
+    eval "$(docker-machine env $DOCKER_MACHINE)"
+  else
+    echo "starting docker-machine"
+    docker-machine start $DOCKER_MACHINE && eval "$(docker-machine env $DOCKER_MACHINE)"
+  fi
+fi
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -94,3 +107,6 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export NVM_DIR="/Users/jpe/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

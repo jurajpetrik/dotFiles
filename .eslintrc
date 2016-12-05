@@ -4,6 +4,5 @@
   },
   "rules": {
     "no-undef": "off",
-    "comma-dangle": "error" 
   }
 }

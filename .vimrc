@@ -1,23 +1,20 @@
-" -------------------------- PLUGINS  -------------------------------
+" -------------------------  PLUGINS  -------------------------------
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
-Plug 'scrooloose/syntastic' " linting
+Plug 'jurajpetrik/vim-surround' " allow vim-y grammar for surroundings such as quotes, brackets
 Plug 'tpope/vim-repeat' " make plugin actions repeatable with the dot key
 Plug 'tpope/vim-commentary' " add motion for commenting
 Plug 'craigemery/vim-autotag' " generate ctags on file save
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy finder
-Plug 'tpope/vim-sensible' "a sensible sets of vim defaults (almost) everyone can agree on
 Plug 'christoomey/vim-tmux-navigator' " vim + tmux = <3
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " completion
-Plug 'ervandew/supertab'
 
 " JS plugins
 Plug 'heavenshell/vim-jsdoc' , { 'for': ['javascript', 'javascript.jsx']} " jsdoc generator
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx']} " better js syntax highlighting
 
 Plug 'sheerun/vim-json' " JSON syntax
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern',  'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 Plug 'SirVer/ultisnips'
@@ -27,27 +24,44 @@ Plug 'tpope/vim-fugitive' " git wrapper
 Plug 'craigemery/vim-autotag'
 Plug 'scwood/vim-hybrid' " colorscheme
 Plug 'morhetz/gruvbox' " colorscheme
+
 " airline plugins
 Plug 'vim-airline/vim-airline' " status bar
-Plug 'vim-airline/vim-airline-themes' 
+Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. Is this magic?
 " /airline plugins
 
 Plug 'lilydjwg/colorizer' " color html color codes
 " Plug 'janko-m/vim-test' " test suite runner
+Plug 'neomake/neomake', { 'on': ['Neomake'] } " linter
+Plug 'milkypostman/vim-togglelist' "Function to toggle location/quickfix list
+Plug 'majutsushi/tagbar'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'wellle/targets.vim'
+" Codi interactive REPL like editing
+Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 call plug#end()
 
 source ~/.vim/custom/folds.vim
+source ~/.vim/custom/deoplete-settings.vim
+source ~/.vim/custom/neomake-settings.vim
+source ~/.vim/custom/mdn-docs.vim
 
+" close vim if last open window is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " let test#strategy = "basic" " run tests in neovim :terminal buffer
 " let test#javascript#runner = 'mocha'
 " let test#javascript#mocha#executable = 'NODE_ENV=localTest mocha --recursive test/bootstrap.test.js'
 
+" Enable jsdoc syntax highlighting, courtesy of pangloss/vim-javascript plugin
+let g:javascript_plugin_jsdoc = 1
+
 let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W',
-      \'y'    : '#S'}
+  \'a'    : '#S',
+  \'win'  : '#I #W',
+  \'cwin' : '#I #W',
+  \'y'    : '#S'}
 
 
 let g:airline#extensions#tmuxline#enabled = 0
@@ -61,53 +75,18 @@ nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
-vnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
-vnoremap <silent> <A-j> :TmuxNavigateDown<cr>
-vnoremap <silent> <A-k> :TmuxNavigateUp<cr>
-vnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-vnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
-
-" DEOPLETE
-let g:deoplete#enable_at_startup = 1
-" Path completion from buffer directory not pwd
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-      \ 'tern#Complete',
-      \ 'jspc#omni'
- \]
-
-" automatically close preview window of deoplete once chose sth
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" /DEOPLETE
-
+nnoremap <silent> <C-j> gT
+nnoremap <silent> <C-k> gt
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-
-" Settings for Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_javascript_checkers = ['eslint'] " Use eslint for javascript
-
-" Settings for Syntastic
 let g:airline_powerline_fonts = 1
+
 set noshowmode
 " -------------------------- PLUGINS  -------------------------------
 set termguicolors
 
-" color scheme 
+" color scheme
 colorscheme gruvbox
 set background=dark
 
@@ -115,6 +94,9 @@ set background=dark
 if has('mouse')
   set mouse=a
 endif
+
+" automatically read open file changes from third party
+set autoread
 
 " toggle invisible characters
 set list
@@ -132,7 +114,7 @@ set ignorecase
 set hlsearch
 
 " don't redraw when executing macros
-set nolazyredraw 
+set nolazyredraw
 
 " delete spaces 2 at a time in insert mode.
 set softtabstop=2
@@ -173,17 +155,57 @@ set undodir=~/.vim/undodir
 set backupdir=~/.vim/backupdir
 set directory=~/.vim/directory
 
-" ---------------------- CUSTOM KEYBINDING --------------------------
+" ---------------------- MAPPINGS --------------------------
+
 " set Leader key to spacebar
-let mapleader = "\<Space>"
+let mapleader = " "
+
+" when searching for occurences of word under cursor, don't jump immediately
+nnoremap * *N
+nnoremap # #N
+
+nnoremap g= mkgg=G`k
+vnoremap g= mkgg=G`k
+" When jump to next match also center screen
+nnoremap n nzz
+nnoremap N Nzz
+vnoremap n nzz
+vnoremap N Nzz
+
+" and when jumping to a tag
+nnoremap <c-]> <c-]>zz
+vnoremap <c-]> <c-]>zz
+
+" Same when moving up and down
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
+vnoremap <C-u> <C-u>zz
+vnoremap <C-d> <C-d>zz
+vnoremap <C-f> <C-f>zz
+vnoremap <C-b> <C-b>zz
+
+" And when cycling through movement history
+" nnoremap <C-o> <C-o>zz
+" vnoremap <C-o> <C-o>zz
+" nnoremap <C-i> <C-o>zz
+" vnoremap <C-i> <C-o>zz
+
+" and get rid of fucking useless 'hold space to move cursor left'
+nnoremap <Space> <nop>
+vnoremap <Space> <nop>
+
+nnoremap <CR> <nop>
+vnoremap <CR> <nop>
+
+nnoremap <c-t> :TagbarToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Leader+enter 'full-screen' current split
-" TODO: when hit again, go back to original layout
-nnoremap <silent> <Leader><CR> :only<CR>
-" backtick is taken by tmux
-nnoremap '' ``
+nnoremap <silent> <Leader><CR> <c-w>T
 
-" indent after pasting!
+" indent after pasting! TODO: fix for pasting less than full line
 nnoremap p p=`]
 nnoremap P P=`]
 
@@ -193,19 +215,24 @@ command! EditVim e ~/.config/nvim/init.vim
 command! EditGitConfig e ~/.gitconfig
 command! EditGitIgnore e ~/.gitignore
 
-" delete from cursor position to end of line
-inoremap <C-d> <Esc>lDa
+command! JsonFormat %!python -m json.tool
+command! Only :normal 0f(i.only
+command! OnlyNot :normal 0f.dt(
 
 nnoremap gs :Gstatus<CR>
 
-nnoremap K a<CR><Esc>
-nnoremap <silent> <Leader>t :vsplit<CR>:terminal<CR>
+nnoremap K i<CR><Up><Esc>$
+nnoremap <silent> <Leader>t :call OpenSmartSplit()<CR>:terminal<CR>
 
-:tnoremap <Esc> <C-\><C-n>
-:tnoremap <A-h> <C-\><C-n><C-w>h
-:tnoremap <A-j> <C-\><C-n><C-w>j
-:tnoremap <A-k> <C-\><C-n><C-w>k
-:tnoremap <A-l> <C-\><C-n><C-w>l
+tnoremap <Esc> <C-\><C-n>
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+tnoremap <A-H> <C-\><C-n><C-w>Hi
+tnoremap <A-J> <C-\><C-n><C-w>Ji
+tnoremap <A-K> <C-\><C-n><C-w>Ki
+tnoremap <A-L> <C-\><C-n><C-w>Li
 
 nnoremap <A-H> <C-W>H
 nnoremap <A-J> <C-W>J
@@ -213,32 +240,33 @@ nnoremap <A-K> <C-W>K
 nnoremap <A-L> <C-W>L
 
 " edit this file in a split
-nnoremap <Leader>er <Esc>:vsplit $MYVIMRC<CR>
+nnoremap <silent> <Leader>er :call OpenSmartSplit($MYVIMRC)<cr>
 " source vimrc
-nnoremap <Leader>r :source $MYVIMRC<CR> :echo "Sourced config file"<CR>
+nnoremap <Leader>r :source $MYVIMRC<CR> :echom "Sourced config file"<CR>
 
 "move line up
 " nnoremap - ddkP==
 "move line down
-nnoremap _ ddp==
+" nnoremap _ ddp==
 
 " get rid of that pesky typo
-nnoremap q: :q
+" nnoremap q: <nop>
 
-nnoremap ; :
-vnoremap ; :
+nnoremap , :
+vnoremap , :
 
-nnoremap : ;
-vnoremap : ;
+nnoremap : ,
+vnoremap : ,
+
+" same think for moving through change list: last edit location
+nnoremap g: g,
+vnoremap g: g,
 
 " double slash to search for visually selected text
 vnoremap // y/<C-R>" <CR>
 
 " make Y yank to the end of line, consistent with C,D (change, delete)
 nnoremap Y y$
-" make V and vv work analagous to C,cc ; D, dd;
-nnoremap V v$
-nnoremap vv V
 
 " Ctrl + o insert new line below, stay in normal mode
 nnoremap <Leader>o o<Esc>k
@@ -246,46 +274,24 @@ nnoremap <Leader>o o<Esc>k
 " Ctrl + O insert new line above, stay in normal mode
 nnoremap <Leader>O O<Esc>j
 
-" ctrl-s to write file
+" ctrl-s to write buffer
 nnoremap <C-s> :w<CR>
+" ctrl-c to close buffer
+nnoremap <C-c> :q<CR>
 
 " Leader + Escape, clear search highlighting
 nnoremap <silent> <Leader><Esc> :noh<CR>
 vnoremap <silent> <Leader><Esc> :noh<CR>
-
-" Leader + v, open vertical split
-nnoremap <Leader>v :vnew<CR>
-nnoremap <Leader>. :vnew<CR>
-
-" Leader + b, open horizontal split
-nnoremap <Leader>b :new<CR>
-nnoremap <Leader>, :vnew<CR>
-" commented cause fucks up: cd src/..
-" ca src source $MYVIMRC
-
-" go to previous, next location bindings. (useful for syntastic plugin, jump
-" to the next/prev error)
-nnoremap <Leader>n :lnext<CR>
-nnoremap <Leader>N :lprev<CR>
-
-" last open buffer
-nnoremap <Leader>l :b#<CR>
-
-inoremap (  ()<Left>
-inoremap {  {}<Left>
-inoremap "  ""<Left>
-inoremap '  ''<Left>
-inoremap [  []<Left>
-
-" in insert mode, write moduleName ,then Ctrl + e(xpand) 
-" =>  const moduleName = require('moduleName');
-inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
+"
+nnoremap <silent> <Leader>s :call OpenSmartSplit()<CR>
 
 " choose buffer
 nnoremap gb :CtrlPBuffer<CR>
-nnoremap gf :CtrlP<CR>
+" gf is already mapped by vim to Go to file location under cursor, and that's
+" quite useful
+" nnoremap gf :CtrlP<CR>
 nnoremap gr :CtrlPMRU<CR>
-nnoremap gt :CtrlPTag<CR>
+" nnoremap gt :CtrlPTag<CR>
 
 " last open buffer
 nnoremap gl :b#<CR>
@@ -293,14 +299,62 @@ nnoremap gl :b#<CR>
 nnoremap <c-p> :CtrlPMixed<CR>
 
 " s to surround
-nnoremap s <Plug>Ysurround
+nmap s  <Plug>Ysurround
+nmap ss <Plug>Yssurround
+nmap S  <Plug>YSurround
+nmap SS <Plug>YSSurround
 
-" AUTOCMDs 
+" ================ FUNCTIONs =======================
+"
+" returns the if active window's width is bigger than its height
+function! IsActiveWindowLandscape()
+  : let l:width = str2float(winwidth(0))
+  : let l:height = str2float(winheight(0))
+  : let l:ratio = l:width / l:height
 
+  : if l:ratio > 2.3 " this threshold ratio was chosen by trying which dimensions I wanted to open vertical/horizontal split
+  :   return 1
+  : endif
+endfunction
+
+" open vertical/horizontal split depending on window dimensionions
+" if passed file name then open that in the split, else empty split
+function! OpenSmartSplit(...)
+:  if IsActiveWindowLandscape()
+:    if !a:0
+:      vnew
+:    else
+:      execute 'vsplit ' . a:1
+:    endif
+:   else
+:    if !a:0
+:      new
+:    else
+:      execute 'split ' . a:1
+:    endif
+:  endif
+endfunction
+
+function! PrependWhitespace(...)
+  if (matchstr(getline('.'), '\%' . col('.') . 'c.') ==? ' ')
+    exe "norm! a" . a:1
+  else
+    exe "norm! a " . a:1
+  endif
+  exe "startinsert!"
+endfunction
+  "
+  " ================ / FUNCTIONs =======================
+
+" ================ AUTOCMDs =======================
 "Remember last cursor position between file closes
-augroup cursor
+augroup misc
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  " auto term mode when entering terminal window
+  autocmd BufEnter term://* startinsert
+  " periodically read for file changes outside of vim
+  autocmd CursorHold,CursorHoldI * checktime
 augroup END
 
 fun! TrimWhitespace()
@@ -319,3 +373,22 @@ augroup trimWhitespace
   autocmd!
   autocmd BufWritePre * :call TrimWhitespace()
 augroup END
+
+augroup filetypeSpecific
+  autocmd!
+  " in insert mode, write moduleName ,then Ctrl + e(xpand) =>  const moduleName = require('moduleName');
+  autocmd filetype javascript inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
+  " autocmd filetype vim nnoremap <c-e> <Esc>A'<Esc>IPlug '<Esc>
+
+  " automatic braces insert
+
+  autocmd filetype javascript,vim inoremap ( ()<Left>
+  autocmd filetype javascript inoremap " ""<Left>
+
+  autocmd filetype javascript,vim inoremap ' ''<Left>
+  autocmd filetype javascript,vim inoremap [ []<Left>
+
+  autocmd FileType javascript inoremap = <C-]><ESC>:call PrependWhitespace("=")<CR>
+  autocmd FileType javascript inoremap { <C-]><ESC>:call PrependWhitespace("{")<CR>}<Left>
+augroup END
+" ============== /AUTOCMDs =============
