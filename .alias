@@ -18,9 +18,15 @@ alias eg='nvim ~/.gitconfig'
 
 # Colorize ls outputs
 alias ls='ls -GpFh'
-alias g=git
+
 alias v=nvim
 alias vi=nvim
+alias vim=nvim
+
+alias g=git
+alias ga=git add
+alias gs=git status
+alias gcm=git commit
 alias p=pacman
 alias up="cd .."
 # If you pipe colored output to less, keep the colors
