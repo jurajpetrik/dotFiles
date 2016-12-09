@@ -201,6 +201,7 @@ vnoremap <CR> <nop>
 
 nnoremap <c-t> :TagbarToggle<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <silent><F1> :NERDTreeToggle<CR>
 
 " Leader+enter 'full-screen' current split
 nnoremap <silent> <Leader><CR> <c-w>T
@@ -363,6 +364,17 @@ function! PrependWhitespace(char)
 
 endfunction
 
+fun! TrimWhitespace()
+  " Don't strip files where trailing whitespace is significant. For now just
+  " markdown
+  if &ft =~ 'markdown'
+    return
+  endif
+  let l:save = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:save)
+endfun
+
 
 " ================ / FUNCTIONs =======================
 
@@ -376,17 +388,6 @@ augroup misc
   " periodically read for file changes outside of vim
   autocmd CursorHold,CursorHoldI * checktime
 augroup END
-
-fun! TrimWhitespace()
-  " Don't strip files where trailing whitespace is significant. For now just
-  " markdown
-  if &ft =~ 'markdown'
-    return
-  endif
-  let l:save = winsaveview()
-  %s/\s\+$//e
-  call winrestview(l:save)
-endfun
 
 " trim trailing whitespace on filesave
 augroup trimWhitespace
@@ -408,6 +409,7 @@ augroup filetypeSpecific
   autocmd filetype javascript,vim inoremap [ []<Left>
 
   autocmd FileType javascript inoremap = <C-]><ESC>:call PrependWhitespace("=")<CR>
+  autocmd FileType javascript inoremap < <C-]><ESC>:call PrependWhitespace("<")<CR>
   autocmd FileType javascript inoremap { <C-]><ESC>:call PrependWhitespace("{")<CR>}<Left>
 augroup END
 " ============== /AUTOCMDs =============
