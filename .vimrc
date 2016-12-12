@@ -82,8 +82,9 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 let g:airline_powerline_fonts = 1
 
-set noshowmode
 " -------------------------- PLUGINS  -------------------------------
+set inccommand=nosplit
+set noshowmode
 set termguicolors
 
 " color scheme
