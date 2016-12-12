@@ -70,6 +70,8 @@ eval $(thefuck --alias)
 export TERMINAL='termite'
 export GIT_EDITOR='nvim'
 export EDITOR='nvim'
+export HISTSIZE=10000000
+export SAVEHIST=10000000
 
 # handle docker machine shit in osx
 if [[ "$OSTYPE" == darwin* ]]
@@ -110,3 +112,5 @@ fi
 
 export NVM_DIR="/Users/jpe/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# use the LTS node version
+nvm use --lts >/dev/null
