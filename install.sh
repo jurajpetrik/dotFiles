@@ -26,7 +26,7 @@ ln -nfs $PWD/.vimrc ~/.config/nvim/init.vim
 ln -nfs $PWD/.zshrc ~/.zshrc
 ln -nfs $PWD/.oh-my-zsh ~/.oh-my-zsh
 ln -nfs $PWD/.alias ~/.alias
-ln -nfs $PWD/.zprofile ~/.zprofile
+ln -nfs $PWD/.zshenv ~/.zshenv
 ln -nfs $PWD/.zlogin ~/.zlogin
 
 ln -nfs $PWD/.tmuxinator ~/.tmuxinator
