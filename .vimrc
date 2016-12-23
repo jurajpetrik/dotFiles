@@ -200,9 +200,8 @@ vnoremap <Space> <nop>
 nnoremap <CR> <nop>
 vnoremap <CR> <nop>
 
-nnoremap <c-t> :TagbarToggle<CR>
-nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <silent><F1> :NERDTreeToggle<CR>
+nnoremap <silent><F2> :TagbarToggle<CR>
 
 " Leader+enter 'full-screen' current split
 nnoremap <silent> <Leader><CR> <c-w>T
@@ -240,6 +239,11 @@ nnoremap <A-H> <C-W>H
 nnoremap <A-J> <C-W>J
 nnoremap <A-K> <C-W>K
 nnoremap <A-L> <C-W>L
+
+nnoremap <Left> <C-W><
+nnoremap <Down> <C-W>-
+nnoremap <Up> <C-W>+
+nnoremap <Right> <C-W>>
 
 " edit this file in a split
 nnoremap <silent> <Leader>er :call OpenSmartSplit($MYVIMRC)<cr>
@@ -305,6 +309,9 @@ nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
 nmap S  <Plug>YSurround
 nmap SS <Plug>YSSurround
+" visual mode mapping to surround is S for some reason. s seems more natural
+" to me.
+vmap s S
 
 " ================ FUNCTIONs =======================
 "
@@ -386,8 +393,8 @@ augroup misc
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
   " auto term mode when entering terminal window
   autocmd BufEnter term://* startinsert
-  " periodically read for file changes outside of vim
-  autocmd CursorHold,CursorHoldI * checktime
+  " open NERDTree on vim start if called without arguments
+  autocmd VimEnter * if !argc() | NERDTreeToggle | endif
 augroup END
 
 " trim trailing whitespace on filesave
@@ -400,8 +407,7 @@ augroup filetypeSpecific
   autocmd!
   " in insert mode, write moduleName ,then Ctrl + e(xpand) =>  const moduleName = require('moduleName');
   autocmd filetype javascript inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
-  " autocmd filetype vim nnoremap <c-e> <Esc>A'<Esc>IPlug '<Esc>
-
+  autocmd filetype vim nnoremap <c-e> IPlug li'A'
   " automatic braces insert
   autocmd filetype javascript,vim inoremap ( ()<Left>
   autocmd filetype javascript inoremap " ""<Left>

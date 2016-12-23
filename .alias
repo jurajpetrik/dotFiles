@@ -65,4 +65,4 @@ codi() {
     Codi $syntax" "$@"
 }
 
-flushDnsCache() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder }
+flushDnsCache() { sudo killall -HUP mDNSResponder }

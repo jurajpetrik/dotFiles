@@ -1,10 +1,10 @@
-set foldmethod=syntax
-set foldlevelstart=1
+" set foldmethod=syntax
+" set foldlevelstart=1
 
-let javaScript_fold=1         " JavaScript
+" let javaScript_fold=1         " JavaScript
 
-" setlocal foldmethod=indent
-" setlocal foldignore=
+setlocal foldmethod=indent
+setlocal foldignore=
 
 " {} motion skips over closed folds
 set foldopen-=block
