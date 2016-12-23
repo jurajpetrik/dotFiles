@@ -58,10 +58,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:javascript_plugin_jsdoc = 1
 
 let g:tmuxline_preset = {
-  \'a'    : '#S',
-  \'win'  : '#I #W',
-  \'cwin' : '#I #W',
-  \'y'    : '#S'}
+      \'a'    : '#S',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'y'    : '#S'}
 
 
 let g:airline#extensions#tmuxline#enabled = 0
@@ -108,8 +108,9 @@ set title
 " use system clipboard by default
 set clipboard^=unnamedplus,unnamed
 
-" Ignore case when searching
-set ignorecase
+" Ignore case when searching unless search term contain uppercase, then
+" respect case
+set smartcase
 
 " Highlight search results
 set hlsearch
@@ -165,8 +166,10 @@ let mapleader = " "
 nnoremap * *N
 nnoremap # #N
 
+" indent whole file, keep cursor position
 nnoremap g= mkgg=G`k
 vnoremap g= mkgg=G`k
+
 " When jump to next match also center screen
 nnoremap n nzz
 nnoremap N Nzz
@@ -196,7 +199,6 @@ vnoremap <C-b> <C-b>zz
 " and get rid of fucking useless 'hold space to move cursor left'
 nnoremap <Space> <nop>
 vnoremap <Space> <nop>
-
 nnoremap <CR> <nop>
 vnoremap <CR> <nop>
 
@@ -269,7 +271,7 @@ nnoremap g: g,
 vnoremap g: g,
 
 " double slash to search for visually selected text
-vnoremap // y/<C-R>" <CR>
+vnoremap // y/<C-R>"<CR>
 
 " make Y yank to the end of line, consistent with C,D (change, delete)
 nnoremap Y y$
@@ -334,19 +336,19 @@ endfunction
 " open vertical/horizontal split depending on window dimensionions
 " if passed file name then open that in the split, else empty split
 function! OpenSmartSplit(...)
-:  if IsActiveWindowLandscape()
-:    if !a:0
-:      vnew
-:    else
-:      execute 'vsplit ' . a:1
-:    endif
-:   else
-:    if !a:0
-:      new
-:    else
-:      execute 'split ' . a:1
-:    endif
-:  endif
+  :  if IsActiveWindowLandscape()
+  :    if !a:0
+  :      vnew
+  :    else
+  :      execute 'vsplit ' . a:1
+  :    endif
+  :   else
+  :    if !a:0
+  :      new
+  :    else
+  :      execute 'split ' . a:1
+  :    endif
+  :  endif
 endfunction
 
 function! GetCharacterAtCursorPosition()
