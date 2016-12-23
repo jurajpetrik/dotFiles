@@ -274,11 +274,16 @@ vnoremap // y/<C-R>" <CR>
 " make Y yank to the end of line, consistent with C,D (change, delete)
 nnoremap Y y$
 
-" Ctrl + o insert new line below, stay in normal mode
+" Leader + o insert new line below, stay in normal mode
 nnoremap <Leader>o o<Esc>k
 
-" Ctrl + O insert new line above, stay in normal mode
+" Leader + O insert new line above, stay in normal mode
 nnoremap <Leader>O O<Esc>j
+
+" Leader + p paste on newline and indent
+nnoremap <Leader>p o<Esc>p=`]
+" Leader + P paste on newline above and indent
+nnoremap <Leader>P O<Esc>p=`]
 
 " ctrl-s to write buffer
 nnoremap <C-s> :w<CR>
