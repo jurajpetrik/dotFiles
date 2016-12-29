@@ -110,7 +110,7 @@ set clipboard^=unnamedplus,unnamed
 
 " Ignore case when searching unless search term contain uppercase, then
 " respect case
-set smartcase
+set ignorecase
 
 " Highlight search results
 set hlsearch
@@ -158,10 +158,11 @@ set backupdir=~/.vim/backupdir
 set directory=~/.vim/directory
 
 " ---------------------- MAPPINGS --------------------------
-
 " set Leader key to spacebar
 let mapleader = " "
 
+" turn line into empty line
+nnoremap <Leader>d 0d$
 " when searching for occurences of word under cursor, don't jump immediately
 nnoremap * *N
 nnoremap # #N
@@ -201,16 +202,21 @@ nnoremap <Space> <nop>
 vnoremap <Space> <nop>
 nnoremap <CR> <nop>
 vnoremap <CR> <nop>
+nnoremap <BS> <nop>
+vnoremap <BS> <nop>
 
 nnoremap <silent><F1> :NERDTreeToggle<CR>
 nnoremap <silent><F2> :TagbarToggle<CR>
+" toggle search highlighting
+nnoremap <silent> <F3> :set invhlsearch<CR>
+
 
 " Leader+enter 'full-screen' current split
 nnoremap <silent> <Leader><CR> <c-w>T
 
-" indent after pasting! TODO: fix for pasting less than full line
-nnoremap p p=`]
-nnoremap P P=`]
+" indent after pasting!
+nnoremap p p=`]<C-O>
+nnoremap P P=`]<C-O>
 
 command! EditTmux e ~/.tmux.conf
 command! EditZsh e ~/.zshrc
@@ -292,10 +298,6 @@ nnoremap <C-s> :w<CR>
 " ctrl-c to close buffer
 nnoremap <C-c> :q<CR>
 
-" Leader + Escape, clear search highlighting
-nnoremap <silent> <Leader><Esc> :noh<CR>
-vnoremap <silent> <Leader><Esc> :noh<CR>
-"
 nnoremap <silent> <Leader>s :call OpenSmartSplit()<CR>
 
 " choose buffer
