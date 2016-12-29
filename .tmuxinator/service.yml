@@ -35,5 +35,5 @@ startup_window: term
 windows:
   - code: nvim
   - term: git status
-  - initing-env: if [ "$( docker ps | grep ${SERVICE//-} | wc -l)" -gt "0" ] ;then exit ;else cd app; npm run init-env && exit ;fi
+  - initing-env: dockerize; if [ "$( docker ps | grep ${SERVICE//-} | wc -l)" -gt "1" ] ;then exit ;else cd app; npm run init-env && exit ;fi
   - server: cd app; npm install && nodemon app

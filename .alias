@@ -66,3 +66,17 @@ codi() {
 }
 
 flushDnsCache() { sudo killall -HUP mDNSResponder }
+
+dockerize() {
+  if [[ "$OSTYPE" == darwin* ]]
+  then
+    DOCKER_MACHINE="default"
+    if docker-machine status $DOCKER_MACHINE | grep "Running" &> /dev/null
+    then
+      eval "$(docker-machine env $DOCKER_MACHINE)"
+    else
+      echo "starting docker-machine"
+      docker-machine start $DOCKER_MACHINE && eval "$(docker-machine env $DOCKER_MACHINE)"
+    fi
+  fi
+}

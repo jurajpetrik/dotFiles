@@ -24,7 +24,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -56,15 +56,12 @@ ZSH_THEME="robbyrussell"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# useful for tmuxinator
-export DISABLE_AUTO_TITLE=true
-
 source $ZSH/oh-my-zsh.sh
 
 # source aliases
 source ~/.alias
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 #this is necessary for i3-nagbar. It executes its commands in i3-sensible-terminal. i3-sensible-terminal runs either the command set in $TERMINAL or falls back to some default terminals.
 export TERMINAL='termite'
@@ -74,17 +71,17 @@ export HISTSIZE=10000000
 export SAVEHIST=10000000
 
 # handle docker machine shit in osx
-if [[ "$OSTYPE" == darwin* ]]
-then
-  DOCKER_MACHINE="default"
-  if docker-machine status $DOCKER_MACHINE | grep "Running" &> /dev/null
-  then
-    eval "$(docker-machine env $DOCKER_MACHINE)"
-  else
-    echo "starting docker-machine"
-    docker-machine start $DOCKER_MACHINE && eval "$(docker-machine env $DOCKER_MACHINE)"
-  fi
-fi
+# if [[ "$OSTYPE" == darwin* ]]
+# then
+#   DOCKER_MACHINE="default"
+#   if docker-machine status $DOCKER_MACHINE | grep "Running" &> /dev/null
+#   then
+#     eval "$(docker-machine env $DOCKER_MACHINE)"
+#   else
+#     echo "starting docker-machine"
+#     docker-machine start $DOCKER_MACHINE && eval "$(docker-machine env $DOCKER_MACHINE)"
+#   fi
+# fi
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -98,19 +95,8 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-export NVM_DIR="/Users/jpe/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="/Users/jpe/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 # use the LTS node version
-nvm use --lts >/dev/null
+# thiss takess SOOOO LONG!!!!!!!
+# nvm use --lts >/dev/null
