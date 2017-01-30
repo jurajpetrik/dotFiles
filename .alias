@@ -3,8 +3,6 @@
 #make sudo expand aliases http://unix.stackexchange.com/a/148548
 alias sudo='sudo '
 
-alias mux='tmuxinator'
-
 # alias to source zshrc
 alias sz='source ~/.zshrc'
 alias reload='source ~/.zshrc'
@@ -29,6 +27,7 @@ alias gs=git status
 alias gcm=git commit
 alias p=pacman
 alias up="cd .."
+
 # If you pipe colored output to less, keep the colors
 alias less="less -r"
 alias pls=fuck
@@ -79,4 +78,18 @@ dockerize() {
       docker-machine start $DOCKER_MACHINE && eval "$(docker-machine env $DOCKER_MACHINE)"
     fi
   fi
+}
+
+docker-cleanup() {
+
+# remove exited containers:
+  docker ps --filter status=dead --filter status=exited -aq | xargs docker rm -v
+
+# remove unused images:
+    docker images --no-trunc | grep '<none>' | awk '{ print $3 }' | xargs docker rmi
+
+# remove unused volumes:
+    find '/var/lib/docker/volumes/' -mindepth 1 -maxdepth 1 -type d | grep -vFf <(
+        docker ps -aq | xargs docker inspect | jq -r '.[] | .Mounts | .[] | .Name | select(.)'
+        ) | xargs rm -fr
 }

@@ -41,6 +41,7 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'wellle/targets.vim'
 " Codi interactive REPL like editing
 Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
+Plug 'mileszs/ack.vim'
 call plug#end()
 
 source ~/.vim/custom/folds.vim
@@ -82,6 +83,9 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 let g:airline_powerline_fonts = 1
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 " -------------------------- PLUGINS  -------------------------------
 set inccommand=nosplit
 set noshowmode
@@ -208,7 +212,7 @@ vnoremap <BS> <nop>
 nnoremap <silent><F1> :NERDTreeToggle<CR>
 nnoremap <silent><F2> :TagbarToggle<CR>
 " toggle search highlighting
-nnoremap <silent> <F3> :set invhlsearch<CR>
+nnoremap <silent> <F3> :nohlsearch<CR>
 
 
 " Leader+enter 'full-screen' current split
@@ -404,6 +408,8 @@ augroup misc
   autocmd BufEnter term://* startinsert
   " open NERDTree on vim start if called without arguments
   autocmd VimEnter * if !argc() | NERDTreeToggle | endif
+  " keep <CR> functional in quickfix window
+  autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 augroup END
 
 " trim trailing whitespace on filesave

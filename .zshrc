@@ -49,7 +49,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git)
+plugins=(tmuxinator)
 
 # User configuration
 
@@ -95,7 +95,7 @@ export SAVEHIST=10000000
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# export NVM_DIR="/Users/jpe/.nvm"
+export NVM_DIR="/Users/jpe/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 # use the LTS node version
 # thiss takess SOOOO LONG!!!!!!!
