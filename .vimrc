@@ -26,8 +26,8 @@ Plug 'scwood/vim-hybrid' " colorscheme
 Plug 'morhetz/gruvbox' " colorscheme
 
 " airline plugins
-Plug 'vim-airline/vim-airline' " status bar
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline' " status bar
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim' " configure tmux status bar to be like vim airline. Is this magic?
 " /airline plugins
 
@@ -42,6 +42,7 @@ Plug 'wellle/targets.vim'
 " Codi interactive REPL like editing
 Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 Plug 'mileszs/ack.vim'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 source ~/.vim/custom/folds.vim
@@ -55,6 +56,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " let test#javascript#runner = 'mocha'
 " let test#javascript#mocha#executable = 'NODE_ENV=localTest mocha --recursive test/bootstrap.test.js'
 
+let g:terraform_align=1
 " Enable jsdoc syntax highlighting, courtesy of pangloss/vim-javascript plugin
 let g:javascript_plugin_jsdoc = 1
 
@@ -235,7 +237,7 @@ command! OnlyNot :normal 0f.dt(
 nnoremap gs :Gstatus<CR>
 
 nnoremap K i<CR><Up><Esc>$
-nnoremap <silent> <Leader>t :call OpenSmartSplit()<CR>:terminal<CR>
+nnoremap <silent> <Leader>t ::terminal<CR>
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
@@ -270,11 +272,13 @@ nnoremap <Leader>r :source $MYVIMRC<CR> :echom "Sourced config file"<CR>
 " get rid of that pesky typo
 " nnoremap q: <nop>
 
-nnoremap , :
-vnoremap , :
+" The below was a good idea but got too confusing when using different vim
+" instances
+" nnoremap , :
+" vnoremap , :
 
-nnoremap : ,
-vnoremap : ,
+" nnoremap : ,
+" vnoremap : ,
 
 " same think for moving through change list: last edit location
 nnoremap g: g,
@@ -396,6 +400,16 @@ fun! TrimWhitespace()
   call winrestview(l:save)
 endfun
 
+" function! SmartBrace()
+"   echom "hello"
+"   if ( IsCursorAtEndOfLine() && GetCharacterAtCursorPosition() ==? '{' )
+"     exe "norm! o}"
+"     exe "norm! O"
+"     exe "norm! cc"
+"   endif
+" else
+"   exe "norm! i<cr>"
+" endfunction
 
 " ================ / FUNCTIONs =======================
 
@@ -423,15 +437,8 @@ augroup filetypeSpecific
   " in insert mode, write moduleName ,then Ctrl + e(xpand) =>  const moduleName = require('moduleName');
   autocmd filetype javascript inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
   autocmd filetype vim nnoremap <c-e> IPlug li'A'
+
   " automatic braces insert
-  autocmd filetype javascript,vim inoremap ( ()<Left>
-  autocmd filetype javascript inoremap " ""<Left>
-
-  autocmd filetype javascript,vim inoremap ' ''<Left>
-  autocmd filetype javascript,vim inoremap [ []<Left>
-
-  autocmd FileType javascript inoremap = <C-]><ESC>:call PrependWhitespace("=")<CR>
-  autocmd FileType javascript inoremap < <C-]><ESC>:call PrependWhitespace("<")<CR>
-  autocmd FileType javascript inoremap { <C-]><ESC>:call PrependWhitespace("{")<CR>}<Left>
+  " autocmd FileType javascript inoremap <cr> <C-]><ESC>:call SmartBrace()<CR>
 augroup END
 " ============== /AUTOCMDs =============

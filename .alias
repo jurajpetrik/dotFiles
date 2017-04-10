@@ -27,6 +27,7 @@ alias gs=git status
 alias gcm=git commit
 alias p=pacman
 alias up="cd .."
+alias d=docker
 
 # If you pipe colored output to less, keep the colors
 alias less="less -r"

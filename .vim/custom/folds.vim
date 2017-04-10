@@ -25,3 +25,6 @@ function! NextClosedFold(dir)
         call winrestview(view)
     endif
 endfunction
+
+" open folds when opening file
+set foldlevel=99
