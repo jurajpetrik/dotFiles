@@ -39,6 +39,7 @@ alias serv="tmuxinator start service"
 alias s="tmuxinator start service"
 alias -- -='cd -'
 alias nodeman=nodemon
+alias in="rm ./package-lock.json ; npm install"
 #functions
 groot(){ cd "$(git rev-parse --show-toplevel)"; }
 gr(){ cd "$(git rev-parse --show-toplevel)"; }

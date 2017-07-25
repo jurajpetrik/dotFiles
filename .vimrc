@@ -43,6 +43,7 @@ Plug 'wellle/targets.vim'
 Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 Plug 'mileszs/ack.vim'
 Plug 'hashivim/vim-terraform'
+Plug 'tomlion/vim-solidity'
 call plug#end()
 
 source ~/.vim/custom/folds.vim
@@ -211,10 +212,12 @@ vnoremap <CR> <nop>
 nnoremap <BS> <nop>
 vnoremap <BS> <nop>
 
+nnoremap <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent><F1> :NERDTreeToggle<CR>
 nnoremap <silent><F2> :TagbarToggle<CR>
 " toggle search highlighting
 nnoremap <silent> <F3> :nohlsearch<CR>
+nnoremap <silent> <Leader>h :nohlsearch<CR>
 
 
 " Leader+enter 'full-screen' current split
@@ -305,6 +308,8 @@ nnoremap <Leader>P O<Esc>p=`]
 nnoremap <C-s> :w<CR>
 " ctrl-c to close buffer
 nnoremap <C-c> :q<CR>
+" but not in terminal buffer
+:autocmd TermOpen :echom "hi"
 
 nnoremap <silent> <Leader>s :call OpenSmartSplit()<CR>
 
