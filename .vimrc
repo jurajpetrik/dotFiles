@@ -81,6 +81,9 @@ nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <A-\> :TmuxNavigatePrevious<cr>
 nnoremap <silent> <C-j> gT
 nnoremap <silent> <C-k> gt
+"
+vmap <Leader>c y PsissBssbiconsole.logA;bb
+
 "make ctrlP ignore gitfiles
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -441,6 +444,7 @@ augroup filetypeSpecific
   autocmd!
   " in insert mode, write moduleName ,then Ctrl + e(xpand) =>  const moduleName = require('moduleName');
   autocmd filetype javascript inoremap <c-e> <Esc>0"sywiconst <Esc>A = require("<Esc>"spa");<Esc>0we
+
   autocmd filetype vim nnoremap <c-e> IPlug li'A'
 
   " automatic braces insert
