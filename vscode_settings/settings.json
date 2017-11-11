@@ -1,0 +1,13 @@
+{
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.useSystemClipboard": true,
+    "extensions.ignoreRecommendations": false,
+    "files.trimTrailingWhitespace": true,
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false
+    },
+    "files.autoSave": "afterDelay",
+    "editor.lineNumbers": "relative",
+    "window.zoomLevel": 1,
+    "gitlens.blame.line.enabled": false
+}
