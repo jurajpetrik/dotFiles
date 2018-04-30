@@ -44,6 +44,7 @@ Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 Plug 'mileszs/ack.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'tomlion/vim-solidity'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 source ~/.vim/custom/folds.vim

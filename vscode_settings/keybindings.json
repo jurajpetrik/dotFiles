@@ -3,6 +3,30 @@
   { "key": "ctrl+`", "command": "workbench.action.terminal.focus",
                         "when": "!terminalFocus" },
   { "key": "ctrl+`", "command": "workbench.action.focusActiveEditorGroup",
-                        "when": "terminalFocus" }
-
-]
+                        "when": "terminalFocus"
+                      },
+                      {
+                        "key": "alt+k",
+                        "command": "workbench.action.navigateUp"
+                      },
+                      {
+                        "key": "alt+j",
+                        "command": "workbench.action.navigateDown"
+                      },
+                      {
+                        "key": "alt+h",
+                        "command": "workbench.action.navigateLeft"
+                      },
+                      {
+                        "key": "alt+l",
+                        "command": "workbench.action.navigateRight"
+                      },
+                      {
+                        "key": "cmd+1",
+                        "command": "workbench.action.toggleSidebarVisibility"
+                      },
+                      {
+                        "key": "cmd+b",
+                        "command": "-workbench.action.toggleSidebarVisibility"
+                      }
+                    ]

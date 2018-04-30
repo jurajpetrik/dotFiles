@@ -8,6 +8,23 @@
     },
     "files.autoSave": "afterDelay",
     "editor.lineNumbers": "relative",
-    "window.zoomLevel": 1,
-    "gitlens.blame.line.enabled": false
+    "window.zoomLevel": 0,
+    "gitlens.blame.line.enabled": false,
+    "workbench.panel.location": "right",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
+        "suppressUpdateNotice": true,
+        "suppressWelcomeNotice": true
+    },
+    "workbench.editor.enablePreview": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.enabled": false,
+    "gitlens.keymap": "alternate"
 }

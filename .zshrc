@@ -49,7 +49,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(tmuxinator)
+# plugins=(tmuxinator)
 
 # User configuration
 
@@ -64,7 +64,6 @@ source ~/.alias
 # eval $(thefuck --alias)
 
 #this is necessary for i3-nagbar. It executes its commands in i3-sensible-terminal. i3-sensible-terminal runs either the command set in $TERMINAL or falls back to some default terminals.
-export TERMINAL='termite'
 export GIT_EDITOR='nvim'
 export EDITOR='nvim'
 export HISTSIZE=10000000
@@ -95,8 +94,9 @@ export SAVEHIST=10000000
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-export NVM_DIR="/Users/jpe/.nvm"
+export NVM_DIR="/Users/jurajpetrik/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 # use the LTS node version
 # thiss takess SOOOO LONG!!!!!!!
 # nvm use --lts >/dev/null
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
