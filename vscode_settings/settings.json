@@ -1,6 +1,4 @@
 {
-    "vim.disableAnnoyingNeovimMessage": true,
-    "vim.useSystemClipboard": true,
     "extensions.ignoreRecommendations": false,
     "files.trimTrailingWhitespace": true,
     "[markdown]": {
@@ -26,5 +24,29 @@
     "workbench.editor.enablePreview": false,
     "gitlens.currentLine.enabled": false,
     "gitlens.hovers.currentLine.enabled": false,
-    "gitlens.keymap": "alternate"
+    "gitlens.keymap": "alternate",
+    "gitlens.historyExplorer.enabled": true,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "php.validate.enable": true,
+    "php.validate.executablePath": "/usr/bin/php",
+    "php.validate.run": "onType",
+    "eslint.autoFixOnSave": true,
+
+    "vim.useSystemClipboard": true,
+    "vim.leader": "<space>",
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "t"], "after": [],
+            "commands": [ {"command": "runInTerminal.run", "args": {"name": "t"}} ],
+        },
+    ],
+
+
+    "runInTerminal.commands": [
+        {"match": "test\\.js$", "name": "t", "cmd": "NODE_ENV=localTest mocha test/bootstrap.test.js ${relativeFile} --exit"},
+    ],
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true,
+
 }

@@ -24,6 +24,7 @@
   ps = push
   pl = pull
   f = fetch
+  file-log = log --follow -p --
 [user]
   email = jpe@coinify.com
   name = Juraj Petrik
