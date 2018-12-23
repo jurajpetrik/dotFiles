@@ -1,103 +1,30 @@
-#aliases
-
 #make sudo expand aliases http://unix.stackexchange.com/a/148548
 alias sudo='sudo '
 
 # alias to source zshrc
-alias sz='source ~/.zshrc'
 alias reload='source ~/.zshrc'
-
-# convenience aliases for editing configs
-alias vimrc='nvim ~/.vimrc'
-alias ev='nvim ~/.vimrc'
-alias et='nvim ~/.tmux.conf'
-alias ez='nvim ~/.zshrc'
-alias eg='nvim ~/.gitconfig'
-
 # Colorize ls outputs
 alias ls='ls -GpFh'
 
-alias v=nvim
-alias vi=nvim
-alias vim=nvim
+alias v=vim
+alias vi=vim
 
 alias g=git
-alias ga=git add
-alias gs=git status
-alias gcm=git commit
-alias p=pacman
-alias up="cd .."
 alias d=docker
 
 # If you pipe colored output to less, keep the colors
 alias less="less -r"
-alias pls=fuck
-alias dotfiles="tmuxinator start dotfiles"
-
-alias service="tmuxinator start service"
-alias serv="tmuxinator start service"
-alias s="tmuxinator start service"
-alias -- -='cd -'
-alias nodeman=nodemon
-alias in="rm ./package-lock.json ; npm install"
-alias python="python3"
 
 # useful for node test debugging
 alias testdbg='NODE_ENV=${NODE_ENV:-localTest} ./node_modules/mocha/bin/mocha --no-timeouts --inspect-brk=5858 test/bootstrap.test.js test/**/*.test.js'
 alias testdbgall='NODE_ENV=${NODE_ENV:-localTest} mocha --recursive --no-timeouts --inspect-brk=5858 test/bootstrap.test.js ./test'
-alias flushDnsCache='sudo killall -HUP mDNSResponder'
-alias dockerpls='dockerize'
+# osx flush dns cache
+#alias flushDnsCache='sudo killall -HUP mDNSResponder'
 #functions
-groot(){ cd "$(git rev-parse --show-toplevel)"; }
-gr(){ cd "$(git rev-parse --show-toplevel)"; }
+groot() { cd "$(git rev-parse --show-toplevel)"; }
 
 # gdiff is diff styled like git diff
 gdiff() { diff -u $@ | colordiff | less -R; }
 
-# weather from the terminal yo
-weather() { curl http://wttr.in/$@; }
-
-# moon from the terminal yo
-moon() { curl http://wttr.in/Moon@$@; }
-
 # make a directory and cd to it with one command
 mkcd() { mkdir $1; cd $1; }
-
-# Codi
-# Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-javascript}"
-    shift
-    nvim -c \
-    "set bt=nofile ls=0 noru nonu nornu |\
-    Codi $syntax" "$@"
-}
-
-
-dockerize() {
-  if [[ "$OSTYPE" == darwin* ]]
-  then
-    DOCKER_MACHINE="default2"
-    if docker-machine status $DOCKER_MACHINE | grep "Running" &> /dev/null
-    then
-      eval "$(docker-machine env $DOCKER_MACHINE)"
-    else
-      echo "starting docker-machine"
-      docker-machine start $DOCKER_MACHINE && eval "$(docker-machine env $DOCKER_MACHINE)"
-    fi
-  fi
-}
-
-docker-cleanup() {
-
-# remove exited containers:
-docker ps --filter status=dead --filter status=exited -aq | xargs docker rm -v
-
-# remove unused images:
-docker images --no-trunc | grep '<none>' | awk '{ print $3 }' | xargs docker rmi
-
-# remove unused volumes:
-find '/var/lib/docker/volumes/' -mindepth 1 -maxdepth 1 -type d | grep -vFf <(
-docker ps -aq | xargs docker inspect | jq -r '.[] | .Mounts | .[] | .Name | select(.)'
-) | xargs rm -fr
-}
