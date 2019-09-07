@@ -26,13 +26,13 @@
   f = fetch
   file-log = log --follow -p --
 [user]
-  email = jpe@coinify.com
+  email = jpetrik@represent.com
   name = Juraj Petrik
 [core]
   preloadindex = true
   fscache = true
   whitespace = cr-at-eol
-  editor = /usr/local/bin/nvim
+  editor = vim
   excludesfile = ~/.global_ignore
 [gc]
   auto = 0

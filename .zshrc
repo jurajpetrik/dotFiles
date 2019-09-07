@@ -4,51 +4,28 @@
 # Path to your oh-my-zsh installation.
   export ZSH="/home/juraj/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_THEME="garyblessington"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
 )
 
 source $ZSH/oh-my-zsh.sh
 source ~/.alias
-# User configuration
+# When Caps + key is pressed, it acts as Ctrl (this is set in gnome tweak tools)
+# When Caps only is pressed it acts as Escape 
+xcape -e 'Control_L=Escape'
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/juraj/src/customink/represent_image_processor_lambda/app/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/juraj/src/customink/represent_image_processor_lambda/app/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/juraj/src/customink/represent_image_processor_lambda/app/node_modules/tabtab/.completions/sls.zsh ]] && . /home/juraj/src/customink/represent_image_processor_lambda/app/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /home/juraj/src/customink/represent_image_processor_lambda/app/node_modules/tabtab/.completions/slss.zsh ]] && . /home/juraj/src/customink/represent_image_processor_lambda/app/node_modules/tabtab/.completions/slss.zsh
