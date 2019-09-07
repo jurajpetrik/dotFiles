@@ -2,7 +2,7 @@
 alias sudo='sudo '
 
 # alias to source zshrc
-alias reload='source ~/.zshrc'
+alias reload='source ~/.zshenv && source ~/.zshrc'
 # Colorize ls outputs
 alias ls='ls -GpFh'
 
@@ -18,6 +18,9 @@ alias less="less -r"
 # useful for node test debugging
 alias testdbg='NODE_ENV=${NODE_ENV:-localTest} ./node_modules/mocha/bin/mocha --no-timeouts --inspect-brk=5858 test/bootstrap.test.js test/**/*.test.js'
 alias testdbgall='NODE_ENV=${NODE_ENV:-localTest} mocha --recursive --no-timeouts --inspect-brk=5858 test/bootstrap.test.js ./test'
+
+alias customink='cd ~/src/customink'
+alias cink='cd ~/src/customink'
 # osx flush dns cache
 #alias flushDnsCache='sudo killall -HUP mDNSResponder'
 #functions
@@ -28,3 +31,28 @@ gdiff() { diff -u $@ | colordiff | less -R; }
 
 # make a directory and cd to it with one command
 mkcd() { mkdir $1; cd $1; }
+
+keepassxc_get_password() {
+  #first argument is the master password
+  local master_password=$1
+  # rest of the args is the entry name
+  shift; local entry=$@
+  # db is hardcoded
+  local db=~/Dropbox/passwords/personal_passwords.kdbx
+  echo -e "$master_password" \
+    | keepassxc.cli show $db "$entry" \
+    | grep Password: \
+    | awk ' {print $2} '
+}
+
+# customink vpn stuff
+alias vpn-disconnect='sudo kill -SIGINT $(cat /home/juraj/ci.vpn.pid)'
+alias vpn-check='if [ -e /home/juraj/ci.vpn.pid ]; then echo "vpn connected"; else echo "vpn disconnected";fi'
+function vpn-connect() {
+  local master_password
+  echo "Enter KeepassXC Master Password to unlock your VPN password: "
+  read -s master_password
+  local vpn_password=$(keepassxc_get_password $master_password "CustomInk password")
+  local vpn_server_cert=$(keepassxc_get_password $master_password "CustomInk VPN Server Certificate")
+  echo "$vpn_password" | sudo openconnect -u juraj.petrik --passwd-on-stdin --authgroup=Technology -b --pid-file=/home/juraj/ci.vpn.pid --servercert $vpn_server_cert vpn.out.customink.com
+}
