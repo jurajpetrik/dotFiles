@@ -1,6 +1,8 @@
 #make sudo expand aliases http://unix.stackexchange.com/a/148548
 alias sudo='sudo '
+alias keepassxc-proxy='keepassxc.proxy'
 
+alias k='kubectl'
 # alias to source zshrc
 alias reload='source ~/.zshenv && source ~/.zshrc'
 # Colorize ls outputs
@@ -40,7 +42,7 @@ keepassxc_get_password() {
   # db is hardcoded
   local db=~/Dropbox/passwords/personal_passwords.kdbx
   echo -e "$master_password" \
-    | keepassxc.cli show $db "$entry" \
+    | keepassxc.cli show --show-protected $db "$entry" \
     | grep Password: \
     | awk ' {print $2} '
 }
@@ -53,6 +55,9 @@ function vpn-connect() {
   echo "Enter KeepassXC Master Password to unlock your VPN password: "
   read -s master_password
   local vpn_password=$(keepassxc_get_password $master_password "CustomInk password")
-  local vpn_server_cert=$(keepassxc_get_password $master_password "CustomInk VPN Server Certificate")
-  echo "$vpn_password" | sudo openconnect -u juraj.petrik --passwd-on-stdin --authgroup=Technology -b --pid-file=/home/juraj/ci.vpn.pid --servercert $vpn_server_cert vpn.out.customink.com
+  echo "$vpn_password" | sudo openconnect -u juraj.petrik --passwd-on-stdin --authgroup=Technology -b --pid-file=/home/juraj/ci.vpn.pid --servercert sha256:bc616405a44a008676102727cc9162f6a1e817f716493cf3dd62032f29a92a05 vpn.out.customink.com
+  sudo rm /etc/resolv.conf
+  echo "#Turning on VPN, setting nameserver to dnsmaq" | sudo tee -a /etc/resolv.conf
+  echo "nameserver 127.0.0.1" | sudo tee -a /etc/resolv.conf
+  sudo /etc/init.d/dnsmasq restart
 }

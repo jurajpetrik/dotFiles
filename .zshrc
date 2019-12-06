@@ -6,9 +6,7 @@
 
 ZSH_THEME="garyblessington"
 
-plugins=(
-  git
-)
+plugins=(git kubectl)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.alias
