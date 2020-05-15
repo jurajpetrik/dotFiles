@@ -22,6 +22,7 @@
   ibranch = "!f() { git checkout $(git branch | fzf); }; f"
   root = rev-parse --show-toplevel
   ps = push
+  psf = push --force
   pl = pull
   f = fetch
   file-log = log --follow -p --
@@ -42,3 +43,7 @@
   ui = true
 [init]
   templatedir = ~/.git_template
+[credential]
+	helper = osxkeychain
+[github]
+	user = jurajpetrik

@@ -1,8 +1,9 @@
 #make sudo expand aliases http://unix.stackexchange.com/a/148548
 alias sudo='sudo '
-alias keepassxc-proxy='keepassxc.proxy'
 
-alias k='kubectl'
+# the below is just for linux
+#alias keepassxc-proxy='keepassxc.proxy'
+
 # alias to source zshrc
 alias reload='source ~/.zshenv && source ~/.zshrc'
 # Colorize ls outputs
@@ -13,6 +14,8 @@ alias vi=vim
 
 alias g=git
 alias d=docker
+alias dc=docker-compose
+alias k='kubectl'
 
 # If you pipe colored output to less, keep the colors
 alias less="less -r"
