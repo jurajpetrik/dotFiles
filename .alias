@@ -16,6 +16,8 @@ alias g=git
 alias d=docker
 alias dc=docker-compose
 alias k='kubectl'
+alias b=bundle
+alias be="bundle exec"
 
 # If you pipe colored output to less, keep the colors
 alias less="less -r"
@@ -24,18 +26,24 @@ alias less="less -r"
 alias testdbg='NODE_ENV=${NODE_ENV:-localTest} ./node_modules/mocha/bin/mocha --no-timeouts --inspect-brk=5858 test/bootstrap.test.js test/**/*.test.js'
 alias testdbgall='NODE_ENV=${NODE_ENV:-localTest} mocha --recursive --no-timeouts --inspect-brk=5858 test/bootstrap.test.js ./test'
 
-alias customink='cd ~/src/customink'
-alias cink='cd ~/src/customink'
-# osx flush dns cache
-#alias flushDnsCache='sudo killall -HUP mDNSResponder'
-#functions
+alias cdserver='cd ~/src/outreach/outreach/server'
+alias cdoutreach='cd ~/src/outreach'
+
+alias flagship-server='telepresence --context dev-environment --namespace bento1a --swap-deployment flagship-server --run /bin/bash -c "export PATH=$PATH && cd ~/src/outreach/outreach/server && bundle exec rails s"'
+
+# cd to git root
 groot() { cd "$(git rev-parse --show-toplevel)"; }
+
+gbranchhist() {
+  pwd=$PWD; cd "$(git rev-parse --show-toplevel)"; cut -f2- .git/logs/HEAD | awk '$1=="checkout:" { print $NF }' | head -10; cd $pwd;
+}
 
 # gdiff is diff styled like git diff
 gdiff() { diff -u $@ | colordiff | less -R; }
 
 # make a directory and cd to it with one command
 mkcd() { mkdir $1; cd $1; }
+
 
 keepassxc_get_password() {
   #first argument is the master password
@@ -50,17 +58,3 @@ keepassxc_get_password() {
     | awk ' {print $2} '
 }
 
-# customink vpn stuff
-alias vpn-disconnect='sudo kill -SIGINT $(cat /home/juraj/ci.vpn.pid)'
-alias vpn-check='if [ -e /home/juraj/ci.vpn.pid ]; then echo "vpn connected"; else echo "vpn disconnected";fi'
-function vpn-connect() {
-  local master_password
-  echo "Enter KeepassXC Master Password to unlock your VPN password: "
-  read -s master_password
-  local vpn_password=$(keepassxc_get_password $master_password "CustomInk password")
-  echo "$vpn_password" | sudo openconnect -u juraj.petrik --passwd-on-stdin --authgroup=Technology -b --pid-file=/home/juraj/ci.vpn.pid --servercert sha256:bc616405a44a008676102727cc9162f6a1e817f716493cf3dd62032f29a92a05 vpn.out.customink.com
-  sudo rm /etc/resolv.conf
-  echo "#Turning on VPN, setting nameserver to dnsmaq" | sudo tee -a /etc/resolv.conf
-  echo "nameserver 127.0.0.1" | sudo tee -a /etc/resolv.conf
-  sudo /etc/init.d/dnsmasq restart
-}

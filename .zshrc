@@ -1,10 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/Users/juraj/.gem/ruby/2.6.0/bin:$PATH
-export PATH=~/instantclient_19_3:$PATH
-
 # Path to your oh-my-zsh installation.
-  export ZSH="/Users/juraj/.oh-my-zsh"
+  export ZSH="/Users/juarjpetrik/.oh-my-zsh"
+
+export PATH="${PATH}:${HOME}/.krew/bin"
 
 ZSH_THEME="garyblessington"
 
@@ -12,15 +10,12 @@ plugins=(git kubectl)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.alias
-# When Caps + key is pressed, it acts as Ctrl (this is set in gnome tweak tools)
-# When Caps only is pressed it acts as Escape 
-# xcape -e 'Control_L=Escape'
 
+# https://github.com/ohmyzsh/ohmyzsh/issues/31
+unsetopt nomatch
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/juarjpetrik/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/juarjpetrik/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
-
-eval "$(rbenv init -)"
-
-export PATH="/usr/local/opt/mysql-client@5.7/bin:$PATH"
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/juarjpetrik/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/juarjpetrik/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
